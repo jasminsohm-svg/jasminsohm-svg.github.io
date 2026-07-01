@@ -9,7 +9,7 @@
   <style>
 
     .page--meldetool {
-      min-height: 100dvh;
+      min-height: max(var(--page-min-h), 100dvh);
     }
 
     .page--meldetool main {
@@ -118,8 +118,9 @@
   <nav class="menu-overlay__nav">
     <a href="index.html" class="menu-overlay__item">Home</a>
     <a href="hinsehen.html" class="menu-overlay__item">Hinsehen</a>
-    <a href="handeln.html" class="menu-overlay__item is-active">Handeln</a>
-    <a href="hilfe.html" class="menu-overlay__item">Hilfe &amp; Anlaufstellen</a>
+    <a href="handeln.html" class="menu-overlay__item">Handeln</a>
+    <a href="hilfe.html" class="menu-overlay__item">Soforthilfe</a>
+    <a href="handeln-3.html" class="menu-overlay__item is-active">Catcalling melden</a>
     <a href="hintergrund.html" class="menu-overlay__item">Hintergrund</a>
   </nav>
 </div>
@@ -137,7 +138,7 @@
         <span class="navbar__menu-label">Menü</span>
       </button>
       <a href="index.html" class="navbar__logo" aria-label="(Un)gezähmt – Startseite">
-        <img src="./logo.png" alt="(Un)gezähmt" style="height:30px;width:auto;display:block;" />
+        <img src="./logo.png" alt="(Un)gezähmt" style="height:33px;width:auto;display:block;" />
       </a>
     </div>
   </header>
@@ -146,7 +147,7 @@
 
     <!-- ── SCHLIESSEN ─────────────────────────────────────── -->
     <div class="melde-close-row">
-      <a href="#" onclick="history.back(); return false;" class="melde-close-btn" aria-label="Schließen">
+      <a href="#" onclick="window.location.href = sessionStorage.getItem('meldeEntryUrl') || 'index.html'; return false;" class="melde-close-btn" aria-label="Schließen">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
           <line x1="4" y1="4" x2="20" y2="20" stroke="#E6301E" stroke-width="1.5" stroke-linecap="round"/>
           <line x1="20" y1="4" x2="4" y2="20" stroke="#E6301E" stroke-width="1.5" stroke-linecap="round"/>

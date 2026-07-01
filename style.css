@@ -29,7 +29,6 @@
       --page-min-w: 375px;
       --page-max-w: 402px;
       --page-min-h: 667px;
-      --page-max-h: 874px;
     }
 
     /* ─── RESET ──────────────────────────────────────────── */
@@ -58,7 +57,7 @@
       max-width: var(--page-max-w);
       margin: 0 auto;
       background: var(--color-bg);
-      min-height: clamp(var(--page-min-h), 100dvh, var(--page-max-h));
+      min-height: max(var(--page-min-h), 100dvh);
       display: flex;
       flex-direction: column;
     }

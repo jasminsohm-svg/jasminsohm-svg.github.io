@@ -9,7 +9,7 @@
   <style>
 
     .page--meldetool {
-      min-height: 100dvh;
+      min-height: max(var(--page-min-h), 100dvh);
       padding-bottom: 96px;
     }
 
@@ -154,9 +154,12 @@
     .melde-btn-wrap {
       position: fixed;
       bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: var(--page-w);
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      width: 100vw;
+      min-width: var(--page-min-w);
+      max-width: var(--page-max-w);
       padding: 10px 16px 20px;
       box-sizing: border-box;
       background: var(--color-bg);
@@ -167,9 +170,11 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      width: 100%;
+      width: 328px;
+      max-width: 100%;
+      margin: 0 auto;
       height: 56px;
-      background: #E6301E;
+      background: #EAA19A;
       border-radius: 12px;
       font-size: 22px;
       font-weight: 400;
@@ -199,8 +204,9 @@
   <nav class="menu-overlay__nav">
     <a href="index.html" class="menu-overlay__item">Home</a>
     <a href="hinsehen.html" class="menu-overlay__item">Hinsehen</a>
-    <a href="handeln.html" class="menu-overlay__item is-active">Handeln</a>
-    <a href="hilfe.html" class="menu-overlay__item">Hilfe &amp; Anlaufstellen</a>
+    <a href="handeln.html" class="menu-overlay__item">Handeln</a>
+    <a href="hilfe.html" class="menu-overlay__item">Soforthilfe</a>
+    <a href="handeln-3.html" class="menu-overlay__item is-active">Catcalling melden</a>
     <a href="hintergrund.html" class="menu-overlay__item">Hintergrund</a>
   </nav>
 </div>
@@ -218,7 +224,7 @@
         <span class="navbar__menu-label">Menü</span>
       </button>
       <a href="index.html" class="navbar__logo" aria-label="(Un)gezähmt – Startseite">
-        <img src="./logo.png" alt="(Un)gezähmt" style="height:30px;width:auto;display:block;" />
+        <img src="./logo.png" alt="(Un)gezähmt" style="height:33px;width:auto;display:block;" />
       </a>
     </div>
   </header>
@@ -238,7 +244,7 @@
         <div class="melde-dot"></div>
         <div class="melde-dot"></div>
       </div>
-      <a href="#" onclick="history.back(); return false;" class="melde-leiste__nav" aria-label="Schließen">
+      <a href="#" onclick="window.location.href = sessionStorage.getItem('meldeEntryUrl') || 'index.html'; return false;" class="melde-leiste__nav" aria-label="Schließen">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
           <line x1="4" y1="4" x2="20" y2="20" stroke="#E6301E" stroke-width="1.5" stroke-linecap="round"/>
           <line x1="20" y1="4" x2="4" y2="20" stroke="#E6301E" stroke-width="1.5" stroke-linecap="round"/>
@@ -260,7 +266,7 @@
 
       <!-- Textarea -->
       <div class="melde-textarea">
-        <textarea placeholder="" aria-label="Was wurde gesagt?"></textarea>
+        <textarea id="melde3cInput" placeholder="" aria-label="Was wurde gesagt?"></textarea>
         <span class="melde-textarea__hint">Was wurde gesagt?</span>
       </div>
 
@@ -270,11 +276,30 @@
 
   <!-- ── BUTTON ──────────────────────────────────────────── -->
   <div class="melde-btn-wrap">
-    <a href="handeln-3d.html" class="melde-btn">Weiter</a>
+    <a href="#" class="melde-btn" id="weiterBtn" aria-disabled="true">Weiter</a>
   </div>
 
 </div>
 
 <script src="script.js"></script>
+<script>
+  const melde3cInput = document.getElementById('melde3cInput');
+  const weiterBtn = document.getElementById('weiterBtn');
+
+  function updateBtn() {
+    const hasInput = melde3cInput.value.trim().length > 0;
+    if (hasInput) {
+      weiterBtn.style.background = '#E6301E';
+      weiterBtn.setAttribute('href', 'handeln-3d.html');
+      weiterBtn.removeAttribute('aria-disabled');
+    } else {
+      weiterBtn.style.background = '#EAA19A';
+      weiterBtn.setAttribute('href', '#');
+      weiterBtn.setAttribute('aria-disabled', 'true');
+    }
+  }
+
+  melde3cInput.addEventListener('input', updateBtn);
+</script>
 </body>
 </html>
