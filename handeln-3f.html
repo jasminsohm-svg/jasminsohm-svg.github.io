@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>(Un)gezähmt – Wo ist es passiert?</title>
+  <link rel="stylesheet" href="https://use.typekit.net/mqg6bai.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+
+    .page--meldetool {
+      min-height: 100dvh;
+      padding-bottom: 96px;
+    }
+
+    .page--meldetool main {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      padding-top: 24px;
+    }
+
+    .melde-leiste {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .melde-leiste__nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      text-decoration: none;
+      flex-shrink: 0;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    .melde-dots {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .melde-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ccc;
+    }
+
+    .melde-dot--active {
+      background: #000;
+    }
+
+    .melde-h1 {
+      font-size: 26px;
+      font-weight: 400;
+      line-height: 32px;
+      color: #000;
+      padding: 0 16px;
+    }
+
+    /* ── ADDRESS INPUT ────────────────────────────────────── */
+    .melde-address-block {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 0 16px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .melde-address-input {
+      width: 100%;
+      height: 45px;
+      border: 1px solid #5E5E5E;
+      border-radius: 6px;
+      background: transparent;
+      font-family: "acumin-pro", sans-serif;
+      font-size: 16px;
+      font-weight: 300;
+      color: #000;
+      padding: 0 12px;
+      box-sizing: border-box;
+      outline: none;
+      line-height: 20px;
+    }
+
+    .melde-address-input:focus {
+      border-color: #E6301E;
+    }
+
+    .melde-address-hint {
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1;
+      color: #000;
+    }
+
+    /* ── MAP ──────────────────────────────────────────────── */
+    #map {
+      width: 100%;
+      height: 216px;
+      flex-shrink: 0;
+    }
+
+    #map .leaflet-tile-pane {
+      filter: grayscale(100%);
+    }
+
+    /* ── BUTTON ───────────────────────────────────────────── */
+    .melde-btn-wrap {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: var(--page-w);
+      padding: 10px 16px 20px;
+      box-sizing: border-box;
+      background: var(--color-bg);
+    }
+
+    .melde-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 100%;
+      height: 56px;
+      background: #EAA19A;
+      border-radius: 12px;
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 1;
+      color: #fff;
+      text-decoration: none;
+      box-sizing: border-box;
+      transition: background 0.1s ease;
+    }
+
+    .melde-btn:active {
+      background: #8A1C12;
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ─── MOBILE MENU OVERLAY ─────────────────────────────── -->
+<div class="menu-overlay" id="menuOverlay" role="dialog" aria-modal="true" aria-label="Navigation">
+  <button class="menu-overlay__close" id="menuClose" aria-label="Menü schließen">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <line x1="4" y1="4" x2="20" y2="20" stroke="#fff" stroke-width="1.5"/>
+      <line x1="20" y1="4" x2="4" y2="20" stroke="#fff" stroke-width="1.5"/>
+    </svg>
+  </button>
+  <nav class="menu-overlay__nav">
+    <a href="index.html" class="menu-overlay__item">Home</a>
+    <a href="hinsehen.html" class="menu-overlay__item">Hinsehen</a>
+    <a href="handeln.html" class="menu-overlay__item is-active">Handeln</a>
+    <a href="hilfe.html" class="menu-overlay__item">Hilfe &amp; Anlaufstellen</a>
+    <a href="hintergrund.html" class="menu-overlay__item">Hintergrund</a>
+  </nav>
+</div>
+
+<!-- ─── PAGE ─────────────────────────────────────────────── -->
+<div class="page page--meldetool">
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="navbar__inner">
+      <button class="navbar__menu-btn" id="menuOpen" aria-label="Menü öffnen" aria-expanded="false" aria-controls="menuOverlay">
+        <span class="hamburger" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </span>
+        <span class="navbar__menu-label">Menü</span>
+      </button>
+      <a href="index.html" class="navbar__logo" aria-label="(Un)gezähmt – Startseite">
+        <img src="./logo.png" alt="(Un)gezähmt" style="height:30px;width:auto;display:block;" />
+      </a>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ── LEISTE ─────────────────────────────────────────── -->
+    <div class="melde-leiste">
+      <button class="melde-leiste__nav" onclick="history.back()" aria-label="Zurück">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M20 12H4M4 12L10 6M4 12L10 18" stroke="#E6301E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="melde-dots" aria-label="Schritt 4 von 4">
+        <div class="melde-dot melde-dot--active"></div>
+        <div class="melde-dot melde-dot--active"></div>
+        <div class="melde-dot melde-dot--active"></div>
+        <div class="melde-dot melde-dot--active"></div>
+      </div>
+      <a href="#" onclick="history.back(); return false;" class="melde-leiste__nav" aria-label="Schließen">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <line x1="4" y1="4" x2="20" y2="20" stroke="#E6301E" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="20" y1="4" x2="4" y2="20" stroke="#E6301E" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- ── FRAGE ──────────────────────────────────────────── -->
+    <h1 class="melde-h1">Wo ist es passiert?</h1>
+
+    <!-- ── ADDRESS INPUT ──────────────────────────────────── -->
+    <div class="melde-address-block">
+      <input
+        type="text"
+        id="addressInput"
+        class="melde-address-input"
+        placeholder=""
+        aria-label="Adresse eingeben"
+      />
+      <span class="melde-address-hint">Adresse</span>
+    </div>
+
+    <!-- ── MAP ────────────────────────────────────────────── -->
+    <div id="map"></div>
+
+  </main>
+
+  <!-- ── BUTTON ──────────────────────────────────────────── -->
+  <div class="melde-btn-wrap">
+    <a href="#" class="melde-btn" id="weiterBtn" aria-disabled="true">Weiter</a>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+  const addressInput = document.getElementById('addressInput');
+  const weiterBtn = document.getElementById('weiterBtn');
+  let locationSelected = false;
+
+  function updateBtn() {
+    const hasInput = addressInput.value.trim().length > 0 || locationSelected;
+    if (hasInput) {
+      weiterBtn.style.background = '#E6301E';
+      weiterBtn.setAttribute('href', 'handeln-4.html');
+      weiterBtn.removeAttribute('aria-disabled');
+    } else {
+      weiterBtn.style.background = '#EAA19A';
+      weiterBtn.setAttribute('href', '#');
+      weiterBtn.setAttribute('aria-disabled', 'true');
+    }
+  }
+
+  addressInput.addEventListener('input', updateBtn);
+
+  // ── LEAFLET MAP ────────────────────────────────────────
+  const map = L.map('map', {
+    center: [48.7978, 9.7982],
+    zoom: 14,
+    zoomControl: true,
+    scrollWheelZoom: false,
+  });
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    maxZoom: 19,
+  }).addTo(map);
+
+  // Custom red marker
+  const redIcon = L.divIcon({
+    className: '',
+    html: '<div style="width:16px;height:16px;background:#E6301E;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.4);"></div>',
+    iconSize: [16, 16],
+    iconAnchor: [8, 8],
+  });
+
+  let marker = null;
+
+  map.on('click', function (e) {
+    const { lat, lng } = e.latlng;
+
+    if (marker) {
+      marker.setLatLng([lat, lng]);
+    } else {
+      marker = L.marker([lat, lng], { icon: redIcon }).addTo(map);
+    }
+
+    locationSelected = true;
+
+    // Reverse geocode via Nominatim
+    fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`)
+      .then(r => r.json())
+      .then(data => {
+        if (data && data.display_name) {
+          addressInput.value = data.display_name;
+        }
+        updateBtn();
+      })
+      .catch(() => updateBtn());
+  });
+</script>
+</body>
+</html>

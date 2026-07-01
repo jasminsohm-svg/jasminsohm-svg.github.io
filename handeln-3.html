@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>(Un)gezähmt – Nicht schweigen, Catcalling melden</title>
+  <link rel="stylesheet" href="https://use.typekit.net/mqg6bai.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+
+    /* ── SEITE ──────────────────────────────────────────── */
+    .page--meldetool {
+      min-height: 100dvh;
+      padding-bottom: 96px;
+    }
+
+    .page--meldetool main {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      padding-top: 24px;
+    }
+
+    /* ── SCHLIESSEN ROW ─────────────────────────────────── */
+    .melde-close-row {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0 16px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .melde-close-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    /* ── EINFÜHRUNG ─────────────────────────────────────── */
+    .melde-intro {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      width: 100%;
+    }
+
+    .melde-h1 {
+      font-size: 26px;
+      font-weight: 400;
+      line-height: 32px;
+      color: #000;
+      padding: 0 16px;
+    }
+
+    /* ── INFOTEXT ───────────────────────────────────────── */
+    .melde-infotext {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 0 16px;
+      align-items: flex-end;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .melde-infotext__inner {
+      width: 259px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .melde-infotext__text {
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 20px;
+      color: #000;
+    }
+
+    .melde-infotext__caption {
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1;
+      color: #000;
+    }
+
+    /* ── BUTTON ─────────────────────────────────────────── */
+    .melde-btn-wrap {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: var(--page-w);
+      padding: 10px 16px 20px;
+      box-sizing: border-box;
+      background: var(--color-bg);
+    }
+
+    .melde-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 100%;
+      height: 56px;
+      background: #E6301E;
+      border-radius: 12px;
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 1;
+      color: #fff;
+      text-decoration: none;
+      box-sizing: border-box;
+      transition: background 0.1s ease;
+    }
+
+    .melde-btn:active {
+      background: #E6301E;
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ─── MOBILE MENU OVERLAY ─────────────────────────────── -->
+<div class="menu-overlay" id="menuOverlay" role="dialog" aria-modal="true" aria-label="Navigation">
+  <button class="menu-overlay__close" id="menuClose" aria-label="Menü schließen">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <line x1="4" y1="4" x2="20" y2="20" stroke="#fff" stroke-width="1.5"/>
+      <line x1="20" y1="4" x2="4" y2="20" stroke="#fff" stroke-width="1.5"/>
+    </svg>
+  </button>
+  <nav class="menu-overlay__nav">
+    <a href="index.html" class="menu-overlay__item">Home</a>
+    <a href="hinsehen.html" class="menu-overlay__item">Hinsehen</a>
+    <a href="handeln.html" class="menu-overlay__item">Handeln</a>
+    <a href="hilfe.html" class="menu-overlay__item">Soforthilfe</a>
+    <a href="handeln-3.html" class="menu-overlay__item is-active">Catcalling melden</a>
+    <a href="hintergrund.html" class="menu-overlay__item">Hintergrund</a>
+  </nav>
+</div>
+
+<!-- ─── PAGE ─────────────────────────────────────────────── -->
+<div class="page page--meldetool">
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="navbar__inner">
+      <button class="navbar__menu-btn" id="menuOpen" aria-label="Menü öffnen" aria-expanded="false" aria-controls="menuOverlay">
+        <span class="hamburger" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </span>
+        <span class="navbar__menu-label">Menü</span>
+      </button>
+      <a href="index.html" class="navbar__logo" aria-label="(Un)gezähmt – Startseite">
+        <img src="./logo.png" alt="(Un)gezähmt" style="height:30px;width:auto;display:block;" />
+      </a>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ── SCHLIESSEN ────────────────────────────────────── -->
+    <div class="melde-close-row">
+      <a href="#" onclick="window.location.href = sessionStorage.getItem('menuReturnUrl') || document.referrer || 'index.html'; return false;" class="melde-close-btn" aria-label="Schließen">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <line x1="4" y1="4" x2="20" y2="20" stroke="#E6301E" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="20" y1="4" x2="4" y2="20" stroke="#E6301E" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- ── EINFÜHRUNG ────────────────────────────────────── -->
+    <div class="melde-intro">
+
+      <h1 class="melde-h1">Catcalling melden</h1>
+
+      <div class="melde-infotext">
+        <div class="melde-infotext__inner">
+          <p class="melde-infotext__text">Hast du sexuelle Belästigung im öffentlichen Raum erlebt?</p>
+          <p class="melde-infotext__text">Melde den Vorfall anonym und trage dazu bei, den öffentlichen Raum für alle sicherer zu machen.</p>
+          <p class="melde-infotext__caption">Dauer: Ca. 2 Minuten</p>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ── BUTTON ──────────────────────────────────────────── -->
+  <div class="melde-btn-wrap">
+    <a href="handeln-3b.html" class="melde-btn">Jetzt Melden</a>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

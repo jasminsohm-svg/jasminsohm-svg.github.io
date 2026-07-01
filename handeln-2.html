@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>(Un)gezähmt – Wie du helfen kannst</title>
+  <link rel="stylesheet" href="https://use.typekit.net/mqg6bai.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+
+    /* ── SEITE ──────────────────────────────────────────── */
+    .page--detail main {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      padding-top: 24px;
+      padding-bottom: 0;
+    }
+
+    .page--detail .detail-links {
+      padding-bottom: 40px;
+    }
+
+    /* ── HEADER ─────────────────────────────────────────── */
+    .detail-page-header {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 0 16px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .back-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      text-decoration: none;
+    }
+
+    .detail-h1 {
+      font-size: 26px;
+      font-weight: 400;
+      line-height: 32px;
+      color: #000;
+    }
+
+    /* ── INFOTEXT ───────────────────────────────────────── */
+    .infotext {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      width: 100%;
+    }
+
+    .infotext__heading {
+      padding-left: 16px;
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 27px;
+      color: #000;
+    }
+
+    .infotext__body {
+      padding: 0 16px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .infotext__text {
+      width: 259px;
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 20px;
+      color: #000;
+    }
+
+    /* ── ACCORDION ──────────────────────────────────────── */
+    .accordion {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      padding: 0 16px;
+      box-sizing: border-box;
+    }
+
+    .accordion__item {
+      border-bottom: 1px solid #000;
+    }
+
+    .accordion__item:last-child {
+      border-bottom: none;
+    }
+
+    .accordion__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      cursor: pointer;
+      gap: 8px;
+    }
+
+    .accordion__label {
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.2;
+      color: #000;
+      width: 259px;
+    }
+
+    .accordion__icon {
+      flex-shrink: 0;
+      width: 24px;
+      height: 13px;
+      color: #E6301E;
+    }
+
+    .accordion__item.is-open .accordion__icon {
+      transform: rotate(180deg);
+    }
+
+    /* Sanfte Animation mit grid-template-rows */
+    .accordion__content {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.3s ease;
+    }
+
+    .accordion__item.is-open .accordion__content {
+      grid-template-rows: 1fr;
+    }
+
+    .accordion__content-inner {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding-bottom: 0;
+      transition: padding-bottom 0.3s ease;
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 20px;
+      color: #000;
+    }
+
+    .accordion__item.is-open .accordion__content-inner {
+      padding-bottom: 16px;
+    }
+
+    .accordion__content-inner p {
+      margin: 0;
+    }
+
+    .accordion__bullets {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .accordion__bullet {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+
+    .accordion__bullet-icon {
+      flex-shrink: 0;
+      width: 12px;
+      height: 12px;
+      margin-top: 3px;
+    }
+
+    .accordion__bullet-text {
+      flex: 1;
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 20px;
+      color: #000;
+    }
+
+    /* ── BILD ───────────────────────────────────────────── */
+    .detail-image {
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+    }
+
+    .detail-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ─── MOBILE MENU OVERLAY ─────────────────────────────── -->
+<div class="menu-overlay" id="menuOverlay" role="dialog" aria-modal="true" aria-label="Navigation">
+  <button class="menu-overlay__close" id="menuClose" aria-label="Menü schließen">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <line x1="4" y1="4" x2="20" y2="20" stroke="#fff" stroke-width="1.5"/>
+      <line x1="20" y1="4" x2="4" y2="20" stroke="#fff" stroke-width="1.5"/>
+    </svg>
+  </button>
+  <nav class="menu-overlay__nav">
+    <a href="index.html" class="menu-overlay__item">Home</a>
+    <a href="hinsehen.html" class="menu-overlay__item">Hinsehen</a>
+    <a href="handeln.html" class="menu-overlay__item is-active">Handeln</a>
+    <a href="hilfe.html" class="menu-overlay__item">Soforthilfe</a>
+    <a href="handeln-3.html" class="menu-overlay__item">Catcalling melden</a>
+    <a href="hintergrund.html" class="menu-overlay__item">Hintergrund</a>
+  </nav>
+</div>
+
+<!-- ─── PAGE ─────────────────────────────────────────────── -->
+<div class="page page--detail">
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="navbar__inner">
+      <button class="navbar__menu-btn" id="menuOpen" aria-label="Menü öffnen" aria-expanded="false" aria-controls="menuOverlay">
+        <span class="hamburger" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </span>
+        <span class="navbar__menu-label">Menü</span>
+      </button>
+      <a href="index.html" class="navbar__logo" aria-label="(Un)gezähmt – Startseite">
+        <img src="./logo.png" alt="(Un)gezähmt" style="height:30px;width:auto;display:block;" />
+      </a>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ── 1. SEITENHEADER ───────────────────────────────── -->
+    <div class="detail-page-header">
+      <a href="handeln.html" class="back-btn" aria-label="Zurück">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+          <path d="M20 12H4M4 12L10 6M4 12L10 18"
+            stroke="#E6301E" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <h1 class="detail-h1">Wie du helfen kannst</h1>
+    </div>
+
+    <!-- ── 2. INFOTEXT ───────────────────────────────────── -->
+    <div class="infotext">
+      <h2 class="infotext__heading">Mach dich nützlich</h2>
+      <div class="infotext__body">
+        <p class="infotext__text">
+          Wenn du beobachtest, dass sich andere Menschen unwohl fühlen, ist Mut zur Hilfeleistung wichtig. Handle dabei immer bedacht und bringe dich nicht in Gefahr.
+        </p>
+      </div>
+    </div>
+
+    <!-- ── 3. ACCORDION ──────────────────────────────────── -->
+    <div class="accordion">
+
+      <div class="accordion__item">
+        <div class="accordion__header">
+          <span class="accordion__label">Situation einschätzen</span>
+          <svg class="accordion__icon" width="24" height="13" viewBox="0 0 24 12.9004" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11.2893 12.7765C11.0755 12.6935 10.8661 12.5497 10.6609 12.3449L0.353643 2.03703C0.133635 1.81741 0.0161933 1.54788 0.00131732 1.22844C-0.0139501 0.909391 0.103492 0.624984 0.353643 0.375224C0.603403 0.125073 0.88037 0 1.18455 0C1.48872 0 1.76569 0.125073 2.01545 0.375224L11.9892 10.3484L21.963 0.375224C22.1826 0.155216 22.4521 0.0377744 22.7716 0.0228985C23.0906 0.00763101 23.375 0.125073 23.6248 0.375224C23.8749 0.624984 24 0.901953 24 1.20613C24 1.5103 23.8749 1.78727 23.6248 2.03703L13.3175 12.3449C13.1123 12.5497 12.9029 12.6935 12.6892 12.7765C12.4754 12.8591 12.2421 12.9004 11.9892 12.9004C11.7363 12.9004 11.503 12.8591 11.2893 12.7765Z" fill="currentColor"/>
+          </svg>
+        </div>
+        <div class="accordion__content">
+          <div class="accordion__content-inner">
+            <p>Bevor du eingreifst, prüfe die Situation anhand folgender Fragen:</p>
+            <div class="accordion__bullets">
+              <div class="accordion__bullet">
+                <img class="accordion__bullet-icon" src="http://localhost:3845/assets/2fd86d67a502d2882e4385a7df04ff4903dc8e70.svg" alt="" />
+                <span class="accordion__bullet-text">Bist du sicher, dass die belästigende Person dir körperlich nicht überlegen ist?</span>
+              </div>
+              <div class="accordion__bullet">
+                <img class="accordion__bullet-icon" src="http://localhost:3845/assets/2fd86d67a502d2882e4385a7df04ff4903dc8e70.svg" alt="" />
+                <span class="accordion__bullet-text">Ist die Situation noch nicht eskaliert?</span>
+              </div>
+            </div>
+            <p>Wenn eine Situation zu bedrohlich wirkt, bringe dich selbst nicht in Gefahr. Rufe in diesem Fall lieber die Polizei oder bitte Personen in deinem Umfeld um Hilfe.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion__item">
+        <div class="accordion__header">
+          <span class="accordion__label">Überlegt handeln</span>
+          <svg class="accordion__icon" width="24" height="13" viewBox="0 0 24 12.9004" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11.2893 12.7765C11.0755 12.6935 10.8661 12.5497 10.6609 12.3449L0.353643 2.03703C0.133635 1.81741 0.0161933 1.54788 0.00131732 1.22844C-0.0139501 0.909391 0.103492 0.624984 0.353643 0.375224C0.603403 0.125073 0.88037 0 1.18455 0C1.48872 0 1.76569 0.125073 2.01545 0.375224L11.9892 10.3484L21.963 0.375224C22.1826 0.155216 22.4521 0.0377744 22.7716 0.0228985C23.0906 0.00763101 23.375 0.125073 23.6248 0.375224C23.8749 0.624984 24 0.901953 24 1.20613C24 1.5103 23.8749 1.78727 23.6248 2.03703L13.3175 12.3449C13.1123 12.5497 12.9029 12.6935 12.6892 12.7765C12.4754 12.8591 12.2421 12.9004 11.9892 12.9004C11.7363 12.9004 11.503 12.8591 11.2893 12.7765Z" fill="currentColor"/>
+          </svg>
+        </div>
+        <div class="accordion__content">
+          <div class="accordion__content-inner">
+            <div class="accordion__bullets">
+              <div class="accordion__bullet">
+                <img class="accordion__bullet-icon" src="http://localhost:3845/assets/2fd86d67a502d2882e4385a7df04ff4903dc8e70.svg" alt="" />
+                <span class="accordion__bullet-text">Stelle Blickkontakt zur betroffenen Person her</span>
+              </div>
+              <div class="accordion__bullet">
+                <img class="accordion__bullet-icon" src="http://localhost:3845/assets/2fd86d67a502d2882e4385a7df04ff4903dc8e70.svg" alt="" />
+                <span class="accordion__bullet-text">Sprich die betroffene Person direkt an, ignoriere die belästigende Person und thematisiere die Belästigung nicht. Du kannst auch so tun, als wärt ihr befreundet.</span>
+              </div>
+              <div class="accordion__bullet">
+                <img class="accordion__bullet-icon" src="http://localhost:3845/assets/2fd86d67a502d2882e4385a7df04ff4903dc8e70.svg" alt="" />
+                <span class="accordion__bullet-text">Bleib gegenüber der belästigenden Person ruhig und sachlich</span>
+              </div>
+              <div class="accordion__bullet">
+                <img class="accordion__bullet-icon" src="http://localhost:3845/assets/2fd86d67a502d2882e4385a7df04ff4903dc8e70.svg" alt="" />
+                <span class="accordion__bullet-text">Halte den Vorfall nach Möglichkeit durch Notizen, Sprachnachrichten oder Videos fest</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion__item">
+        <div class="accordion__header">
+          <span class="accordion__label">Nachsorge leisten</span>
+          <svg class="accordion__icon" width="24" height="13" viewBox="0 0 24 12.9004" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11.2893 12.7765C11.0755 12.6935 10.8661 12.5497 10.6609 12.3449L0.353643 2.03703C0.133635 1.81741 0.0161933 1.54788 0.00131732 1.22844C-0.0139501 0.909391 0.103492 0.624984 0.353643 0.375224C0.603403 0.125073 0.88037 0 1.18455 0C1.48872 0 1.76569 0.125073 2.01545 0.375224L11.9892 10.3484L21.963 0.375224C22.1826 0.155216 22.4521 0.0377744 22.7716 0.0228985C23.0906 0.00763101 23.375 0.125073 23.6248 0.375224C23.8749 0.624984 24 0.901953 24 1.20613C24 1.5103 23.8749 1.78727 23.6248 2.03703L13.3175 12.3449C13.1123 12.5497 12.9029 12.6935 12.6892 12.7765C12.4754 12.8591 12.2421 12.9004 11.9892 12.9004C11.7363 12.9004 11.503 12.8591 11.2893 12.7765Z" fill="currentColor"/>
+          </svg>
+        </div>
+        <div class="accordion__content">
+          <div class="accordion__content-inner">
+            <p>Auch wenn ein direktes Eingreifen während der Situation nicht möglich war, kannst du helfen:</p>
+            <div class="accordion__bullets">
+              <div class="accordion__bullet">
+                <img class="accordion__bullet-icon" src="http://localhost:3845/assets/2fd86d67a502d2882e4385a7df04ff4903dc8e70.svg" alt="" />
+                <span class="accordion__bullet-text">Frage die betroffene Person im Nachhinein, ob alles in Ordnung ist</span>
+              </div>
+              <div class="accordion__bullet">
+                <img class="accordion__bullet-icon" src="http://localhost:3845/assets/2fd86d67a502d2882e4385a7df04ff4903dc8e70.svg" alt="" />
+                <span class="accordion__bullet-text">Signalisiere Unterstützung und zeige, dass du das Verhalten ebenfalls nicht in Ordnung findest</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── 4. BILD ───────────────────────────────────────── -->
+    <div class="detail-image">
+      <img src="./m0a7909.jpg" alt="Foto zu Zivilcourage" />
+    </div>
+
+    <!-- ── 5. TEXTLINKS ──────────────────────────────────── -->
+    <nav class="detail-links" aria-label="Weitere Themen">
+      <a href="handeln-1.html" class="detail-link">
+        <span class="detail-link__label">Wer Sexismus erkennt, kann handeln</span>
+        <svg class="detail-link__arrow" viewBox="0 0 20 20" fill="none">
+          <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="#E6301E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </nav>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <nav class="footer__links" aria-label="Footer-Navigation">
+        <a href="hilfe.html" class="footer__textlink">
+          <span class="footer__textlink-label">Hilfe &amp; Anlaufstellen</span>
+          <div class="footer__textlink-arrow-slot">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M6.167 6.167H17.833M17.833 6.167V17.833M17.833 6.167L6 18" stroke="#FFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
+        <a href="impressum.html" class="footer__textlink">
+          <span class="footer__textlink-label">Impressum</span>
+          <div class="footer__textlink-arrow-slot">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M6.167 6.167H17.833M17.833 6.167V17.833M17.833 6.167L6 18" stroke="#FFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
+      </nav>
+      <a href="index.html" class="footer__logo" aria-label="(Un)gezähmt – Startseite">
+        <img src="./logoinvertiert.png" alt="(Un)gezähmt" />
+      </a>
+    </div>
+  </footer>
+
+</div>
+
+<script src="script.js"></script>
+<script>
+  // Accordion
+  document.querySelectorAll('.accordion__header').forEach(header => {
+    header.addEventListener('click', () => {
+      const item = header.parentElement;
+      const isOpen = item.classList.contains('is-open');
+      document.querySelectorAll('.accordion__item').forEach(i => i.classList.remove('is-open'));
+      if (!isOpen) item.classList.add('is-open');
+    });
+  });
+</script>
+</body>
+</html>

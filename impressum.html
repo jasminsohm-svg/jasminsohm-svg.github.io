@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>(Un)gezähmt – Impressum</title>
+  <link rel="stylesheet" href="https://use.typekit.net/mqg6bai.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+
+    /* ── SEITE ──────────────────────────────────────────── */
+    .page--impressum {
+      min-height: 100dvh;
+    }
+
+    .page--impressum .footer {
+      margin-top: auto;
+    }
+
+    .page--impressum main {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      padding-top: 24px;
+      padding-bottom: 40px;
+    }
+
+    /* ── SEITENHEADLINE ─────────────────────────────────── */
+    .impressum-h1 {
+      font-size: 26px;
+      font-weight: 400;
+      line-height: 32px;
+      color: #000;
+      padding: 0 16px;
+    }
+
+    /* ── BLÖCKE ────────────────────────────────────────── */
+    .impressum-block {
+      display: flex;
+      justify-content: flex-end;
+      padding: 0 16px;
+    }
+
+    .impressum-block__inner {
+      width: 190px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .impressum-person {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .impressum-person p,
+    .impressum-person a {
+      font-size: 14px;
+      font-weight: 300;
+      line-height: normal;
+      color: #000;
+    }
+
+    .impressum-person a {
+      text-decoration: none;
+    }
+
+    .impressum-text {
+      font-size: 14px;
+      font-weight: 300;
+      line-height: normal;
+      color: #000;
+      width: 190px;
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ─── MOBILE MENU OVERLAY ─────────────────────────────── -->
+<div class="menu-overlay" id="menuOverlay" role="dialog" aria-modal="true" aria-label="Navigation">
+  <button class="menu-overlay__close" id="menuClose" aria-label="Menü schließen">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <line x1="4" y1="4" x2="20" y2="20" stroke="#fff" stroke-width="1.5"/>
+      <line x1="20" y1="4" x2="4" y2="20" stroke="#fff" stroke-width="1.5"/>
+    </svg>
+  </button>
+  <nav class="menu-overlay__nav">
+    <a href="index.html" class="menu-overlay__item">Home</a>
+    <a href="hinsehen.html" class="menu-overlay__item">Hinsehen</a>
+    <a href="handeln.html" class="menu-overlay__item">Handeln</a>
+    <a href="hilfe.html" class="menu-overlay__item">Soforthilfe</a>
+    <a href="handeln-3.html" class="menu-overlay__item">Catcalling melden</a>
+    <a href="hintergrund.html" class="menu-overlay__item">Hintergrund</a>
+  </nav>
+</div>
+
+<!-- ─── PAGE ─────────────────────────────────────────────── -->
+<div class="page page--impressum">
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="navbar__inner">
+      <button class="navbar__menu-btn" id="menuOpen" aria-label="Menü öffnen" aria-expanded="false" aria-controls="menuOverlay">
+        <span class="hamburger" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </span>
+        <span class="navbar__menu-label">Menü</span>
+      </button>
+      <a href="index.html" class="navbar__logo" aria-label="(Un)gezähmt – Startseite">
+        <img src="./logo.png" alt="(Un)gezähmt" style="height:30px;width:auto;display:block;" />
+      </a>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ── SEITENHEADLINE ─────────────────────────────────── -->
+    <h1 class="impressum-h1">Impressum</h1>
+
+    <!-- ── KONTAKT ─────────────────────────────────────────── -->
+    <div class="impressum-block">
+      <div class="impressum-block__inner">
+        <div class="impressum-person">
+          <p>Louisa Rettenmeier</p>
+          <a href="mailto:louisa.rettenmeier1@gmail.com" target="_blank">louisa.rettenmeier1@gmail.com</a>
+        </div>
+        <div class="impressum-person">
+          <p>Jasmin Sohm</p>
+          <a href="mailto:jasminsohm@web.de" target="_blank">jasminsohm@web.de</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PROJEKTBESCHREIBUNG ────────────────────────────── -->
+    <div class="impressum-block">
+      <p class="impressum-text">Diese Website entstand im Rahmen unseres Bachelorprojekts im Studiengang Kommunikationsgestaltung an der Hochschule für Gestaltung Schwäbisch Gmünd.</p>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <nav class="footer__links" aria-label="Footer-Navigation">
+        <a href="hilfe.html" class="footer__textlink">
+          <span class="footer__textlink-label">Hilfe &amp; Anlaufstellen</span>
+          <div class="footer__textlink-arrow-slot">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M6.167 6.167H17.833M17.833 6.167V17.833M17.833 6.167L6 18" stroke="#FFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
+        <a href="impressum.html" class="footer__textlink">
+          <span class="footer__textlink-label">Impressum</span>
+          <div class="footer__textlink-arrow-slot">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M6.167 6.167H17.833M17.833 6.167V17.833M17.833 6.167L6 18" stroke="#FFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
+      </nav>
+      <a href="index.html" class="footer__logo" aria-label="(Un)gezähmt – Startseite">
+        <img src="./logoinvertiert.png" alt="(Un)gezähmt" />
+      </a>
+    </div>
+  </footer>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

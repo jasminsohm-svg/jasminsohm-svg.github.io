@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>(Un)gezähmt – Was ist passiert?</title>
+  <link rel="stylesheet" href="https://use.typekit.net/mqg6bai.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+
+    .page--meldetool {
+      min-height: 100dvh;
+      padding-bottom: 96px;
+    }
+
+    .page--meldetool main {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      padding-top: 24px;
+    }
+
+    /* ── LEISTE (Pfeil | Dots | X) ───────────────────────── */
+    .melde-leiste {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .melde-leiste__nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .melde-dots {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .melde-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ccc;
+    }
+
+    .melde-dot--active {
+      background: #000;
+    }
+
+    /* ── FRAGE ───────────────────────────────────────────── */
+    .melde-h1 {
+      font-size: 26px;
+      font-weight: 400;
+      line-height: 32px;
+      color: #000;
+      padding: 0 16px;
+    }
+
+    /* ── MULTISELECT ─────────────────────────────────────── */
+    .melde-multiselect {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      padding: 0 16px;
+      box-sizing: border-box;
+    }
+
+    .melde-option {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      min-height: 48px;
+      padding: 8px 0;
+      cursor: pointer;
+      border: none;
+      background: none;
+      width: 100%;
+      text-align: left;
+    }
+
+    .melde-option__label {
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 20px;
+      color: #000;
+      flex: 1;
+    }
+
+    .melde-option__circle {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 1.5px solid #E6301E;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s ease;
+    }
+
+    .melde-option.is-selected .melde-option__circle {
+      background: #E6301E;
+    }
+
+    .melde-option.is-selected .melde-option__circle::after {
+      content: '';
+      display: block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #fff;
+    }
+
+    /* ── BUTTON ─────────────────────────────────────────── */
+    .melde-btn-wrap {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: var(--page-w);
+      padding: 10px 16px 20px;
+      box-sizing: border-box;
+      background: var(--color-bg);
+    }
+
+    .melde-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 100%;
+      height: 56px;
+      background: #EAA19A;
+      border-radius: 12px;
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 1;
+      color: #fff;
+      text-decoration: none;
+      box-sizing: border-box;
+      transition: background 0.1s ease;
+    }
+
+    .melde-btn:active {
+      background: #E6301E;
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ─── MOBILE MENU OVERLAY ─────────────────────────────── -->
+<div class="menu-overlay" id="menuOverlay" role="dialog" aria-modal="true" aria-label="Navigation">
+  <button class="menu-overlay__close" id="menuClose" aria-label="Menü schließen">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <line x1="4" y1="4" x2="20" y2="20" stroke="#fff" stroke-width="1.5"/>
+      <line x1="20" y1="4" x2="4" y2="20" stroke="#fff" stroke-width="1.5"/>
+    </svg>
+  </button>
+  <nav class="menu-overlay__nav">
+    <a href="index.html" class="menu-overlay__item">Home</a>
+    <a href="hinsehen.html" class="menu-overlay__item">Hinsehen</a>
+    <a href="handeln.html" class="menu-overlay__item is-active">Handeln</a>
+    <a href="hilfe.html" class="menu-overlay__item">Hilfe &amp; Anlaufstellen</a>
+    <a href="hintergrund.html" class="menu-overlay__item">Hintergrund</a>
+  </nav>
+</div>
+
+<!-- ─── PAGE ─────────────────────────────────────────────── -->
+<div class="page page--meldetool">
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="navbar__inner">
+      <button class="navbar__menu-btn" id="menuOpen" aria-label="Menü öffnen" aria-expanded="false" aria-controls="menuOverlay">
+        <span class="hamburger" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </span>
+        <span class="navbar__menu-label">Menü</span>
+      </button>
+      <a href="index.html" class="navbar__logo" aria-label="(Un)gezähmt – Startseite">
+        <img src="./logo.png" alt="(Un)gezähmt" style="height:30px;width:auto;display:block;" />
+      </a>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ── LEISTE ─────────────────────────────────────────── -->
+    <div class="melde-leiste">
+      <span class="melde-leiste__nav" aria-hidden="true"></span>
+      <div class="melde-dots" aria-label="Schritt 1 von 4">
+        <div class="melde-dot melde-dot--active"></div>
+        <div class="melde-dot"></div>
+        <div class="melde-dot"></div>
+        <div class="melde-dot"></div>
+      </div>
+      <a href="#" onclick="history.back(); return false;" class="melde-leiste__nav" aria-label="Schließen">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <line x1="4" y1="4" x2="20" y2="20" stroke="#E6301E" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="20" y1="4" x2="4" y2="20" stroke="#E6301E" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- ── FRAGE ──────────────────────────────────────────── -->
+    <h1 class="melde-h1">Was ist passiert?</h1>
+
+    <!-- ── MULTISELECT ────────────────────────────────────── -->
+    <div class="melde-multiselect">
+
+      <button class="melde-option" type="button" data-key="worte">
+        <span class="melde-option__label">Belästigung mit Worten</span>
+        <span class="melde-option__circle" aria-hidden="true"></span>
+      </button>
+
+      <button class="melde-option" type="button">
+        <span class="melde-option__label">Belästigung durch Geräusche und Gesten</span>
+        <span class="melde-option__circle" aria-hidden="true"></span>
+      </button>
+
+      <button class="melde-option" type="button">
+        <span class="melde-option__label">Anstarren</span>
+        <span class="melde-option__circle" aria-hidden="true"></span>
+      </button>
+
+      <button class="melde-option" type="button">
+        <span class="melde-option__label">Bild- oder Videoaufnahme ohne Zustimmung</span>
+        <span class="melde-option__circle" aria-hidden="true"></span>
+      </button>
+
+      <button class="melde-option" type="button">
+        <span class="melde-option__label">Verfolgen oder Stalking</span>
+        <span class="melde-option__circle" aria-hidden="true"></span>
+      </button>
+
+      <button class="melde-option" type="button">
+        <span class="melde-option__label">Belästigung mit Berührung</span>
+        <span class="melde-option__circle" aria-hidden="true"></span>
+      </button>
+
+    </div>
+
+  </main>
+
+  <!-- ── BUTTON ──────────────────────────────────────────── -->
+  <div class="melde-btn-wrap">
+    <a href="#" class="melde-btn" id="weiterBtn" aria-disabled="true">Weiter</a>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+<script>
+  const options = document.querySelectorAll('.melde-option');
+  const meldeBtn = document.querySelector('.melde-btn');
+
+  function updateBtn() {
+    const anySelected = document.querySelector('.melde-option.is-selected');
+    if (anySelected) {
+      const belaestigungWorten = document.querySelector('.melde-option[data-key="worte"]').classList.contains('is-selected');
+      meldeBtn.style.background = '#E6301E';
+      meldeBtn.setAttribute('href', belaestigungWorten ? 'handeln-3c.html' : 'handeln-3d.html');
+      meldeBtn.removeAttribute('aria-disabled');
+    } else {
+      meldeBtn.style.background = '#EAA19A';
+      meldeBtn.setAttribute('href', '#');
+      meldeBtn.setAttribute('aria-disabled', 'true');
+    }
+  }
+
+  options.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.classList.toggle('is-selected');
+      updateBtn();
+    });
+  });
+</script>
+</body>
+</html>

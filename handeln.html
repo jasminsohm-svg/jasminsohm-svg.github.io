@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>(Un)gezähmt – Handeln</title>
+  <link rel="stylesheet" href="https://use.typekit.net/mqg6bai.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ─── MOBILE MENU OVERLAY ─────────────────────────────── -->
+<div class="menu-overlay" id="menuOverlay" role="dialog" aria-modal="true" aria-label="Navigation">
+  <button class="menu-overlay__close" id="menuClose" aria-label="Menü schließen">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <line x1="4" y1="4" x2="20" y2="20" stroke="#fff" stroke-width="1.5"/>
+      <line x1="20" y1="4" x2="4" y2="20" stroke="#fff" stroke-width="1.5"/>
+    </svg>
+  </button>
+  <nav class="menu-overlay__nav">
+    <a href="index.html" class="menu-overlay__item">Home</a>
+    <a href="hinsehen.html" class="menu-overlay__item">Hinsehen</a>
+    <a href="handeln.html" class="menu-overlay__item is-active">Handeln</a>
+    <a href="hilfe.html" class="menu-overlay__item">Soforthilfe</a>
+    <a href="handeln-3.html" class="menu-overlay__item">Catcalling melden</a>
+    <a href="hintergrund.html" class="menu-overlay__item">Hintergrund</a>
+  </nav>
+</div>
+
+<!-- ─── PAGE ─────────────────────────────────────────────── -->
+<div class="page">
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="navbar__inner">
+      <button class="navbar__menu-btn" id="menuOpen" aria-label="Menü öffnen" aria-expanded="false" aria-controls="menuOverlay">
+        <span class="hamburger" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+        <span class="navbar__menu-label">Menü</span>
+      </button>
+      <a href="index.html" class="navbar__logo" aria-label="(Un)gezähmt – Startseite">
+        <img src="./logo.png" alt="(Un)gezähmt" style="height:30px;width:auto;display:block;" />
+      </a>
+    </div>
+  </header>
+
+  <!-- INTRO SECTIONS -->
+  <main class="intro-sections" id="main-content">
+
+    <!-- Karte 1 -->
+    <article class="intro-card">
+      <h2 class="intro-card__headline">Wer Sexismus erkennt, kann handeln</h2>
+      <div class="intro-card__body-wrap">
+        <div class="intro-card__body-inner">
+          <p class="intro-card__text">
+            Bewusstes Hinsehen ist ein erster Schritt, um Sexismus nicht einfach
+            zu übersehen. Wer solche Muster erkennt und hinterfragt, kann dazu
+            beitragen, festgefahrene Strukturen aufzubrechen.
+          </p>
+          <a href="handeln-1.html" class="mehr-lesen">
+            <span class="mehr-lesen__label">Mehr lesen</span>
+            <svg class="mehr-lesen__arrow" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="#E6301E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Karte 2 -->
+    <article class="intro-card">
+      <h2 class="intro-card__headline">Wie du helfen kannst</h2>
+      <div class="intro-card__body-wrap">
+        <div class="intro-card__body-inner">
+          <p class="intro-card__text">
+            Es ist wichtig, aufmerksam zu sein und nicht wegzuschauen. Wer einen
+            Übergriff bemerkt, kann helfen und zeigen, dass so ein Verhalten nicht
+            in Ordnung ist.
+          </p>
+          <a href="handeln-2.html" class="mehr-lesen">
+            <span class="mehr-lesen__label">Mehr lesen</span>
+            <svg class="mehr-lesen__arrow" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="#E6301E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </article>
+
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <nav class="footer__links" aria-label="Footer-Navigation">
+        <a href="hilfe.html" class="footer__textlink">
+          <span class="footer__textlink-label">Hilfe &amp; Anlaufstellen</span>
+          <div class="footer__textlink-arrow-slot">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M6.16687 6.16687H17.8331M17.8331 6.16687V17.8331M17.8331 6.16687L6 18" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
+        <a href="impressum.html" class="footer__textlink">
+          <span class="footer__textlink-label">Impressum</span>
+          <div class="footer__textlink-arrow-slot">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M6.16687 6.16687H17.8331M17.8331 6.16687V17.8331M17.8331 6.16687L6 18" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
+      </nav>
+      <a href="#" class="footer__logo" aria-label="(Un)gezähmt – Startseite">
+        <img src="./logoinvertiert.png" alt="(Un)gezähmt" />
+      </a>
+    </div>
+  </footer>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

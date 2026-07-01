@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>(Un)gezähmt – Hintergrund</title>
+  <link rel="stylesheet" href="https://use.typekit.net/mqg6bai.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+
+    /* ── SEITE ──────────────────────────────────────────── */
+    .page--hintergrund main {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      padding-bottom: 0;
+    }
+
+    /* ── HEADER BLOCK ───────────────────────────────────── */
+    .hg-header {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .hg-h1 {
+      font-size: 26px;
+      font-weight: 400;
+      line-height: 32px;
+      color: #000;
+      padding: 0 16px;
+    }
+
+    /* ── INFOTEXT ───────────────────────────────────────── */
+    .hg-infotext {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      width: 100%;
+    }
+
+    .hg-infotext__heading {
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 27px;
+      color: #000;
+      padding-left: 16px;
+    }
+
+    .hg-infotext__body {
+      display: flex;
+      justify-content: flex-end;
+      padding: 0 16px;
+    }
+
+    .hg-infotext__text {
+      width: 259px;
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 20px;
+      color: #000;
+    }
+
+    .hg-infotext__bold {
+      font-weight: 500;
+    }
+
+    .hg-infotext__link {
+      color: #000;
+      text-decoration: underline;
+      text-underline-offset: 1px;
+      word-break: break-word;
+    }
+
+    /* ── POSTER GALERIE ─────────────────────────────────── */
+    .hg-gallery-wrap {
+      padding: 0 16px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .hg-gallery {
+      position: relative;
+      width: 328px;
+      height: 764px;
+    }
+
+    .hg-poster {
+      position: absolute;
+      width: 122px;
+      border: 0.2px solid #5E5E5E;
+    }
+
+    .hg-poster img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Positionen exakt aus Figma (relativ zur 328px Galerie) */
+    .hg-poster--1 { left: 0px;   top: 0px;   height: 173px; }
+    .hg-poster--2 { left: 206px; top: 87px;  height: 173px; }
+    .hg-poster--3 { left: 68px;  top: 296px; height: 171px; width: 121px; }
+    .hg-poster--4 { left: 138px; top: 505px; height: 173px; }
+    .hg-poster--5 { left: 0px;   top: 591px; height: 173px; }
+
+    .hg-gallery__icon {
+      position: absolute;
+      left: 130px;
+      top: 173px;
+      width: 24px;
+      height: 24px;
+    }
+
+    /* ── GALERIE: POSTER INTERAKTION ────────────────────── */
+    .hg-poster {
+      cursor: pointer;
+      transition: none;
+    }
+
+    /* Zoom-In Icon ausblenden wenn ein Poster expandiert */
+    .hg-gallery.has-expanded .hg-gallery__icon {
+      display: none;
+    }
+
+    /* Expandiertes Poster: 328×464px, left=0, behält originale top-Position */
+    .hg-poster.is-expanded {
+      width: 328px !important;
+      height: 464px !important;
+      left: 0 !important;
+      z-index: 10;
+    }
+
+    /* ── FOOTER (rot) ───────────────────────────────────── */
+    .hg-footer {
+      margin-top: 40px;
+      background: #E6301E;
+      width: 100%;
+      padding: 32px 16px;
+      box-sizing: border-box;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      min-height: 120px;
+    }
+
+    .hg-footer__links {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .hg-footer__link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      width: 162px;
+      color: #fff;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.3;
+    }
+
+    .hg-footer__link svg {
+      flex-shrink: 0;
+    }
+
+    .hg-footer__logo img {
+      height: 25px;
+      width: auto;
+      display: block;
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ─── MOBILE MENU OVERLAY ─────────────────────────────── -->
+<div class="menu-overlay" id="menuOverlay" role="dialog" aria-modal="true" aria-label="Navigation">
+  <button class="menu-overlay__close" id="menuClose" aria-label="Menü schließen">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <line x1="4" y1="4" x2="20" y2="20" stroke="#fff" stroke-width="1.5"/>
+      <line x1="20" y1="4" x2="4" y2="20" stroke="#fff" stroke-width="1.5"/>
+    </svg>
+  </button>
+  <nav class="menu-overlay__nav">
+    <a href="index.html" class="menu-overlay__item">Home</a>
+    <a href="hinsehen.html" class="menu-overlay__item">Hinsehen</a>
+    <a href="handeln.html" class="menu-overlay__item">Handeln</a>
+    <a href="hilfe.html" class="menu-overlay__item">Soforthilfe</a>
+    <a href="handeln-3.html" class="menu-overlay__item">Catcalling melden</a>
+    <a href="hintergrund.html" class="menu-overlay__item is-active">Hintergrund</a>
+  </nav>
+</div>
+
+<!-- ─── PAGE ─────────────────────────────────────────────── -->
+<div class="page page--hintergrund">
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="navbar__inner">
+      <button class="navbar__menu-btn" id="menuOpen" aria-label="Menü öffnen" aria-expanded="false" aria-controls="menuOverlay">
+        <span class="hamburger" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </span>
+        <span class="navbar__menu-label">Menü</span>
+      </button>
+      <a href="index.html" class="navbar__logo" aria-label="(Un)gezähmt – Startseite">
+        <img src="./logo.png" alt="(Un)gezähmt" style="height:30px;width:auto;display:block;" />
+      </a>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ── 1. SEITENHEADLINE ─────────────────────────────── -->
+    <div class="hg-header">
+      <h1 class="hg-h1">Hintergrund</h1>
+    </div>
+
+    <!-- ── 2. INFOTEXT 1 ────────────────────────────────── -->
+    <div class="hg-infotext">
+      <h2 class="hg-infotext__heading">Sichtbar machen</h2>
+      <div class="hg-infotext__body">
+        <p class="hg-infotext__text">(Un)gezähmt macht durch eine Intervention sichtbar, was im Alltag oft übersehen oder verharmlost wird. Wir analysieren ein gesellschaftlich relevantes Thema, wo Veränderung mit Bewusstsein beginnt.</p>
+      </div>
+    </div>
+
+    <!-- ── 3. POSTER GALERIE ─────────────────────────────── -->
+    <div class="hg-gallery-wrap">
+    <div class="hg-gallery" id="hgGallery">
+
+      <!-- Expand-Icon (nur sichtbar wenn kein Poster expandiert) -->
+      <div class="hg-gallery__icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M14 3H21V10" stroke="#E6301E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M21 3L14 10" stroke="#E6301E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M10 21H3V14" stroke="#E6301E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M3 21L10 14" stroke="#E6301E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <div class="hg-poster hg-poster--1" data-poster="1"><img src="./poster1.jpg" alt="Poster 1" /></div>
+      <div class="hg-poster hg-poster--2" data-poster="2"><img src="./poster2.jpg" alt="Poster 2" /></div>
+      <div class="hg-poster hg-poster--3" data-poster="3"><img src="./poster3.jpg" alt="Poster 3" /></div>
+      <div class="hg-poster hg-poster--4" data-poster="4"><img src="./poster4.jpg" alt="Poster 4" /></div>
+      <div class="hg-poster hg-poster--5" data-poster="5"><img src="./poster5.jpg" alt="Poster 5" /></div>
+
+    </div>
+    </div>
+
+    <!-- ── 4. INFOTEXT: BEGRIFFSERKLÄRUNGEN ────────────────── -->
+    <div class="hg-infotext" id="begriffserklaerungen">
+      <h2 class="hg-infotext__heading">Begriffserklärungen</h2>
+      <div class="hg-infotext__body">
+        <p class="hg-infotext__text">
+          <span class="hg-infotext__bold">Weiblich gelesen</span> meint, dass eine Person nach gesellschaftlichen Normen als weiblich wahrgenommen wird oder ihr Weiblichkeit zugeschrieben wird.
+          <br><br>
+          <span class="hg-infotext__bold">Männlich gelesen</span> meint, dass eine Person nach gesellschaftlichen Normen als männlich wahrgenommen wird oder ihr Männlichkeit zugeschrieben wird.
+        </p>
+      </div>
+    </div>
+
+    <!-- ── 5. INFOTEXT: QUELLENVERZEICHNIS ─────────────────── -->
+    <div class="hg-infotext" id="quellenverzeichnis">
+      <h2 class="hg-infotext__heading">Quellenverzeichnis</h2>
+      <div class="hg-infotext__body">
+        <p class="hg-infotext__text">
+          Bundeskriminalamt. (2026). Sicherheit und Kriminalität in Deutschland 2024 (SKiD 2024): Ergebnisbericht (Abb. 29). <a href="https://www.bka.de/DE/UnsereAufgaben/Forschung/ForschungsprojekteUndErgebnisse/Dunkelfeldforschung/SKiD/Ergebnisse/Ergebnisbericht.pdf" target="_blank" rel="noopener" class="hg-infotext__link">https://www.bka.de/DE/UnsereAufgaben/Forschung/ForschungsprojekteUndErgebnisse/Dunkelfeldforschung/SKiD/Ergebnisse/Ergebnisbericht.pdf</a>
+          <br><br>
+          Dellenbaugh-Losse, M. (2024). Gendergerechte Stadtentwicklung: Wie wir eine Stadt für alle bauen. Springer Gabler. <a href="https://doi.org/10.1007/978-3-658-45290-2" target="_blank" rel="noopener" class="hg-infotext__link">https://doi.org/10.1007/978-3-658-45290-2</a>
+          <br><br>
+          Gaedicke, S. (2025). Urbane Angsträume: Eine Situationsanalyse zu diskursiven Konstruktionen öffentlicher Räume[Dissertation, RWTH Aachen University]. transcript Verlag.
+          <br><br>
+          Gemeinsam gegen Sexismus. (n.d.). Wissen über Sexismus. <a href="https://gemeinsam-gegen-sexismus.de/ueber-sexismus/wissen-ueber-sexismus/" target="_blank" rel="noopener" class="hg-infotext__link">https://gemeinsam-gegen-sexismus.de/ueber-sexismus/wissen-ueber-sexismus/</a>
+          <br><br>
+          Kern, L. (2020). Feminist city: Claiming space in a man-made world. Verso.
+          <br><br>
+          Leitgöb-Guzy, N., &amp; Bieber, I. (2026). Ergebnisse der Dunkelfeldstudie „Lebenssituation, Sicherheit und Belastung im Alltag (LeSuBiA)“ I: Gewalterfahrungen innerhalb und außerhalb von (Ex-)Partnerschaften<br>(Themenheft I; Abb. 37, 43, 49). Bundesministerium für Bildung, Familie, Senioren, Frauen und Jugend, Bundesministerium des Innern, Bundeskriminalamt. <a href="https://www.bka.de/SharedDocs/Downloads/DE/Publikationen/Publikationsreihen/Forschungsergebnisse/260210_LeSuBiA_Ergebnisse_I.pdf" target="_blank" rel="noopener" class="hg-infotext__link">https://www.bka.de/SharedDocs/Downloads/DE/Publikationen/Publikationsreihen/Forschungsergebnisse/260210_LeSuBiA_Ergebnisse_I.pdf</a>
+          <br><br>
+          Universität Freiburg. (2024). Leitlinie für geschlechtersensible Sprache. <a href="https://uni-freiburg.de/soziologie/wp-content/uploads/sites/143/Infos-Gendersensible-Sprache.pdf-.pdf" target="_blank" rel="noopener" class="hg-infotext__link">https://uni-freiburg.de/soziologie/wp-content/uploads/sites/143/Infos-Gendersensible-Sprache.pdf-.pdf</a>
+        </p>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ── ROTER FOOTER ───────────────────────────────────── -->
+  <footer class="hg-footer">
+    <div class="hg-footer__links">
+      <a href="hilfe.html" class="hg-footer__link">
+        Hilfe &amp; Anlaufstellen
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M6.167 6.167H17.833M17.833 6.167V17.833M17.833 6.167L6 18" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a href="impressum.html" class="hg-footer__link">
+        Impressum
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M6.167 6.167H17.833M17.833 6.167V17.833M17.833 6.167L6 18" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+    <a href="index.html" class="hg-footer__logo" aria-label="(Un)gezähmt – Startseite">
+      <img src="./logoinvertiert.png" alt="(Un)gezähmt" />
+    </a>
+  </footer>
+
+</div>
+
+<script src="script.js"></script>
+<script>
+  const gallery = document.getElementById('hgGallery');
+  const posters = Array.from(document.querySelectorAll('.hg-poster'));
+
+  const cfg = [
+    { galleryH: 764,  dimIdx: [],    hideIdx: [1,2]  },
+    { galleryH: 764,  dimIdx: [0,3], hideIdx: [2]    },
+    { galleryH: 764,  dimIdx: [],    hideIdx: [3,4]  },
+    { galleryH: 969,  dimIdx: [],    hideIdx: [4]    },
+    { galleryH: 1055, dimIdx: [3],   hideIdx: []     },
+  ];
+
+  function closeExpanded() {
+    posters.forEach(p => {
+      p.classList.remove('is-expanded');
+      p.style.opacity = '';
+      p.style.visibility = '';
+    });
+    gallery.classList.remove('has-expanded');
+    gallery.style.height = '764px';
+  }
+
+  posters.forEach((poster, i) => {
+    poster.addEventListener('click', () => {
+      if (poster.classList.contains('is-expanded')) {
+        closeExpanded();
+        return;
+      }
+      closeExpanded();
+
+      const c = cfg[i];
+
+      // Poster expandieren (top bleibt via originaler CSS-Klasse erhalten)
+      poster.classList.add('is-expanded');
+
+      // Andere Poster dimmen (teilweise sichtbar)
+      c.dimIdx.forEach(idx => { posters[idx].style.opacity = '0.5'; });
+
+      // Poster hinter dem Bild komplett verstecken
+      c.hideIdx.forEach(idx => { posters[idx].style.visibility = 'hidden'; });
+
+      gallery.style.height = c.galleryH + 'px';
+      gallery.classList.add('has-expanded');
+    });
+  });
+</script>
+</body>
+</html>

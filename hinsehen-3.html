@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>(Un)gezähmt – Wie uns Rollenbilder prägen</title>
+  <link rel="stylesheet" href="https://use.typekit.net/mqg6bai.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+
+    /* ── SEITE ──────────────────────────────────────────── */
+    .page--detail main {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      padding-top: 24px;
+      padding-bottom: 0;
+    }
+
+    .page--detail .detail-links {
+      padding-bottom: 40px;
+    }
+
+    /* ── HEADER ─────────────────────────────────────────── */
+    .detail-page-header {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 0 16px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .back-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      text-decoration: none;
+    }
+
+    .detail-h1 {
+      font-size: 26px;
+      font-weight: 400;
+      line-height: 32px;
+      color: #000;
+    }
+
+    /* ── INFOTEXT ───────────────────────────────────────── */
+    .infotext {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      width: 100%;
+    }
+
+    .infotext__heading {
+      padding-left: 16px;
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 27px;
+      color: #000;
+    }
+
+    .infotext__body {
+      padding: 0 16px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .infotext__text {
+      width: 259px;
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 20px;
+      color: #000;
+    }
+
+    .term-link {
+      font-weight: 400;
+      text-decoration: underline;
+      text-underline-offset: 1px;
+      color: #000;
+    }
+
+    /* ── BILD ───────────────────────────────────────────── */
+    .detail-image {
+      width: 100%;
+      height: 198px;
+      overflow: hidden;
+    }
+    .detail-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ─── MOBILE MENU OVERLAY ─────────────────────────────── -->
+<div class="menu-overlay" id="menuOverlay" role="dialog" aria-modal="true" aria-label="Navigation">
+  <button class="menu-overlay__close" id="menuClose" aria-label="Menü schließen">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <line x1="4" y1="4" x2="20" y2="20" stroke="#fff" stroke-width="1.5"/>
+      <line x1="20" y1="4" x2="4" y2="20" stroke="#fff" stroke-width="1.5"/>
+    </svg>
+  </button>
+  <nav class="menu-overlay__nav">
+    <a href="index.html" class="menu-overlay__item">Home</a>
+    <a href="hinsehen.html" class="menu-overlay__item is-active">Hinsehen</a>
+    <a href="handeln.html" class="menu-overlay__item">Handeln</a>
+    <a href="hilfe.html" class="menu-overlay__item">Soforthilfe</a>
+    <a href="handeln-3.html" class="menu-overlay__item">Catcalling melden</a>
+    <a href="hintergrund.html" class="menu-overlay__item">Hintergrund</a>
+  </nav>
+</div>
+
+<!-- ─── PAGE ─────────────────────────────────────────────── -->
+<div class="page page--detail">
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="navbar__inner">
+      <button class="navbar__menu-btn" id="menuOpen" aria-label="Menü öffnen" aria-expanded="false" aria-controls="menuOverlay">
+        <span class="hamburger" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </span>
+        <span class="navbar__menu-label">Menü</span>
+      </button>
+      <a href="index.html" class="navbar__logo" aria-label="(Un)gezähmt – Startseite">
+        <img src="./logo.png" alt="(Un)gezähmt" style="height:30px;width:auto;display:block;" />
+      </a>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ── 1. SEITENHEADER ───────────────────────────────── -->
+    <div class="detail-page-header">
+      <a href="hinsehen.html" class="back-btn" aria-label="Zurück">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+          <path d="M20 12H4M4 12L10 6M4 12L10 18"
+            stroke="#E6301E" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <h1 class="detail-h1">Wie uns Rollenbilder prägen</h1>
+    </div>
+
+    <!-- ── 2. INFOTEXT 1 ─────────────────────────────────── -->
+    <div class="infotext">
+      <h2 class="infotext__heading">Mit Biegen und Brechen gelungen</h2>
+      <div class="infotext__body">
+        <p class="infotext__text">
+          Stereotype basieren oft auf der Annahme Männlichkeit sei überlegen. Frühkindliche Rollenzuschreibungen prägen uns tief. <a href="hintergrund.html#begriffserklaerungen" class="term-link">Männlich gelesene</a> Personen werden als stark sozialisiert, <a href="hintergrund.html#begriffserklaerungen" class="term-link">weiblich gelesene</a> als harmoniebedürftig. Es ist wichtig, sich diese Ansichten abzugewöhnen und Sensibilität zuzulassen.
+        </p>
+      </div>
+    </div>
+
+    <!-- ── 3. INFOTEXT 2 ─────────────────────────────────── -->
+    <div class="infotext">
+      <h2 class="infotext__heading">Die Wurzeln unseres Seins</h2>
+      <div class="infotext__body">
+        <p class="infotext__text">
+          Unsere Sozialisation prägt uns tiefgreifend. Es sind tägliche Erfahrungen, die dieses Unwohlsein verstärken, da weiblich gelesene in öffentlichen Räumen konstant sexualisiert und objektiviert werden.<br><br>Männlich gelesene Personen werden dazu sozialisiert, Raum einzunehmen. Weiblich gelesene lernen oft das Gegenteil.
+        </p>
+      </div>
+    </div>
+
+    <!-- ── 4. BILD ───────────────────────────────────────── -->
+    <div class="detail-image">
+      <img src="./spiegel.jpg" alt="Foto zu Rollenbildern" />
+    </div>
+
+    <!-- ── 5. TEXTLINKS ──────────────────────────────────── -->
+    <nav class="detail-links" aria-label="Weitere Themen">
+      <a href="hinsehen-1.html" class="detail-link">
+        <span class="detail-link__label">Sexismus ist nie harmlos</span>
+        <svg class="detail-link__arrow" viewBox="0 0 20 20" fill="none">
+          <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="#E6301E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a href="hinsehen-2.html" class="detail-link">
+        <span class="detail-link__label">Verstehe deine Unsicherheit</span>
+        <svg class="detail-link__arrow" viewBox="0 0 20 20" fill="none">
+          <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="#E6301E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </nav>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <nav class="footer__links" aria-label="Footer-Navigation">
+        <a href="hilfe.html" class="footer__textlink">
+          <span class="footer__textlink-label">Hilfe &amp; Anlaufstellen</span>
+          <div class="footer__textlink-arrow-slot">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M6.167 6.167H17.833M17.833 6.167V17.833M17.833 6.167L6 18" stroke="#FFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
+        <a href="impressum.html" class="footer__textlink">
+          <span class="footer__textlink-label">Impressum</span>
+          <div class="footer__textlink-arrow-slot">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M6.167 6.167H17.833M17.833 6.167V17.833M17.833 6.167L6 18" stroke="#FFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
+      </nav>
+      <a href="#" class="footer__logo" aria-label="(Un)gezähmt – Startseite">
+        <img src="./logoinvertiert.png" alt="(Un)gezähmt" />
+      </a>
+    </div>
+  </footer>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

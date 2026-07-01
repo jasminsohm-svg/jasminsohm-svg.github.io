@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>(Un)gezähmt – Sexismus ist nie harmlos</title>
+  <link rel="stylesheet" href="https://use.typekit.net/mqg6bai.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+
+    /* ── SEITE ──────────────────────────────────────────── */
+    .page--detail main {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      padding-top: 24px;
+      padding-bottom: 40px;
+    }
+
+    /* ── HEADLINE + INFOTEXT ────────────────────────────── */
+    .detail-top {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .detail-content {
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+      width: 100%;
+    }
+
+    .detail-page-header {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 0 16px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .back-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      text-decoration: none;
+    }
+
+    .detail-h1 {
+      font-size: 26px;
+      font-weight: 400;
+      line-height: 32px;
+      color: #000;
+    }
+
+    /* ── INFOTEXT ───────────────────────────────────────── */
+    .infotext {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      width: 100%;
+    }
+
+    .infotext__heading {
+      padding-left: 16px;
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 27px;
+      color: #000;
+    }
+
+    .infotext__body {
+      padding: 0 16px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .infotext__text {
+      width: 259px;
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 20px;
+      color: #000;
+    }
+
+    .term-link {
+      font-weight: 400;
+      text-decoration: underline;
+      text-underline-offset: 1px;
+      color: #000;
+    }
+
+    /* ── STATISTIK PRÄVALENZ ────────────────────────────── */
+    /* .stat-prev padding moved to .stat-prev__slide */
+
+    /* ── Indikator-Dots (zentriert) ─────────────────────── */
+    .stat-prev__dots {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+
+    /* ── SLIDER ──────────────────────────────────────── */
+    .stat-prev {
+      width: 100%;
+      overflow: hidden;
+    }
+    .stat-prev__slider-wrap {
+      overflow: hidden;
+      width: 100%;
+    }
+    .stat-prev__slider {
+      display: flex;
+      width: 300%;
+      user-select: none;
+      -webkit-user-select: none;
+      cursor: grab;
+    }
+    .stat-prev__slider:active { cursor: grabbing; }
+    .stat-prev__slide {
+      width: calc(100% / 3);
+      box-sizing: border-box;
+      padding: 0 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .stat-prev__inner {
+      height: 270px;
+      overflow: hidden;
+    }
+
+    .stat-prev__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: left center;
+      display: block;
+    }
+
+    .stat-prev__meta {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: transparent;
+      border: 1.5px solid #5E5E5E;
+    }
+    .dot--active { background: #000; border-color: #000; }
+
+    .stat-prev__dots {
+      height: 48px;
+    }
+
+    .stat-prev__label {
+      height: 54px;
+      box-sizing: border-box;
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 1.2;
+      color: #000;
+    }
+
+    .stat-prev__source {
+      margin-top: 8px;
+      font-size: 14px;
+      font-weight: 300;
+      line-height: normal;
+      color: #000;
+    }
+
+    .stat-avoid__source {
+      padding: 0 16px;
+      font-size: 14px;
+      font-weight: 300;
+      line-height: normal;
+      color: #000;
+      box-sizing: border-box;
+    }
+
+    /* ── BILD ───────────────────────────────────────────── */
+    .detail-image {
+      width: 274px;
+      height: 336px;
+      overflow: hidden;
+      background: #fff;
+      flex-shrink: 0;
+    }
+    .detail-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    /* ── STATISTIK VERMEIDEVERHALTEN ────────────────────── */
+    .stat-avoid {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .stat-avoid__bars {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+    }
+
+    .bar-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .bar-group__label {
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1;
+      color: #000;
+      padding-left: 16px;
+      margin-bottom: 7px;
+    }
+
+    /* Balken-Paar: unterer Balken überlappt zur Hälfte */
+    .bar-pair {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .bar-row {
+      overflow: visible;
+    }
+
+    /* Frauen: Rahmen, % rechts innen, runde rechte Ecken */
+    .bar--women {
+      height: 46px;
+      border-top: 2px solid #8A1C12;
+      border-right: 2px solid #8A1C12;
+      border-bottom: 2px solid #8A1C12;
+      border-left: none;
+      background: transparent;
+      border-radius: 0 35px 35px 0;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 14px;
+      box-sizing: border-box;
+      position: relative;
+      z-index: 0;
+    }
+
+    .bar--women .bar__val {
+      font-size: 25px;
+      font-weight: 300;
+      line-height: 1.3;
+      color: #000;
+      white-space: nowrap;
+    }
+
+    /* Männer: gefüllt, % links innen, überlappt oben 50% */
+    .bar--men {
+      height: 46px;
+      background: #8A1C12;
+      border-radius: 0 35px 35px 0;
+      display: flex;
+      align-items: center;
+      padding-left: 2px;
+      padding-right: 8px;
+      box-sizing: border-box;
+      overflow: hidden;
+      position: relative;
+      z-index: 1;
+      margin-top: -23px; /* 50% Überlappung mit Frauen-Balken */
+    }
+
+    .bar--men .bar__val {
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1.3;
+      color: #fff;
+      white-space: nowrap;
+    }
+
+    /* ── LEGENDE ────────────────────────────────────────── */
+    .stat-legend {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 0 16px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .legend-swatch {
+      width: 27px;
+      height: 27px;
+      flex-shrink: 0;
+    }
+
+    .legend-swatch--women {
+      border: 1px solid #8A1C12;
+      background: transparent;
+    }
+
+    .legend-swatch--men { background: #8A1C12; }
+
+    .legend-label {
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1;
+      color: #000;
+    }
+
+    /* ── TEXTLINKS ──────────────────────────────────────── */
+    .detail-links {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 0 16px;
+      width: 100%;
+    }
+
+    .detail-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 327px;
+      text-decoration: none;
+      color: #000;
+    }
+
+    .detail-link__label {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 20px;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      width: 275px;
+    }
+
+    .detail-link__arrow {
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ─── MOBILE MENU OVERLAY ─────────────────────────────── -->
+<div class="menu-overlay" id="menuOverlay" role="dialog" aria-modal="true" aria-label="Navigation">
+  <button class="menu-overlay__close" id="menuClose" aria-label="Menü schließen">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <line x1="4" y1="4" x2="20" y2="20" stroke="#fff" stroke-width="1.5"/>
+      <line x1="20" y1="4" x2="4" y2="20" stroke="#fff" stroke-width="1.5"/>
+    </svg>
+  </button>
+  <nav class="menu-overlay__nav">
+    <a href="index.html" class="menu-overlay__item">Home</a>
+    <a href="hinsehen.html" class="menu-overlay__item is-active">Hinsehen</a>
+    <a href="handeln.html" class="menu-overlay__item">Handeln</a>
+    <a href="hilfe.html" class="menu-overlay__item">Soforthilfe</a>
+    <a href="handeln-3.html" class="menu-overlay__item">Catcalling melden</a>
+    <a href="hintergrund.html" class="menu-overlay__item">Hintergrund</a>
+  </nav>
+</div>
+
+<!-- ─── PAGE ─────────────────────────────────────────────── -->
+<div class="page page--detail">
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="navbar__inner">
+      <button class="navbar__menu-btn" id="menuOpen" aria-label="Menü öffnen" aria-expanded="false" aria-controls="menuOverlay">
+        <span class="hamburger" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </span>
+        <span class="navbar__menu-label">Menü</span>
+      </button>
+      <!-- Logo Menübar: h=37px, exakt wie Figma Logo_ungezaehmt 2 -->
+      <a href="index.html" class="navbar__logo" aria-label="(Un)gezähmt – Startseite">
+        <img src="./logo.png" alt="(Un)gezähmt" style="height:30px;width:auto;display:block;" />
+      </a>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ── 1. HEADLINE + INFOTEXT 1 ───────────────────────── -->
+    <div class="detail-top">
+      <div class="detail-content">
+
+        <!-- Zurück 24×24 + H1 bündig -->
+        <div class="detail-page-header">
+          <a href="hinsehen.html" class="back-btn" aria-label="Zurück">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+              <path d="M20 12H4M4 12L10 6M4 12L10 18"
+                stroke="#E6301E" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <h1 class="detail-h1">Sexismus ist nie harmlos</h1>
+        </div>
+
+        <div class="infotext">
+          <h2 class="infotext__heading">Schaust du hin?</h2>
+          <div class="infotext__body">
+            <p class="infotext__text">
+              Sexismus bedeutet, Menschen aufgrund ihres Geschlechts zu benachteiligen. Einzelne Momente wirken oft harmlos, in der Summe verstärken sie jedoch Unsicherheit und fördern eine Kultur, in der Gewalt gegen <a href="hintergrund.html#begriffserklaerungen" class="term-link">weiblich gelesene</a> Menschen akzeptiert wird.<br><br>Sexismus zeigt sich in vielen Facetten von offener Bedrohung oder Verfolgung bis hin zu subtilen Gesten. Dazu gehören Catcalling wie Pfeifen, Zischen oder Kussgeräusche, ebenso wie aufdringliche Blicke, ungebetene Komplimente oder anzügliche Bemerkungen über das Äußere.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── 2. STATISTIK PRÄVALENZ (Swipe-Slider) ────────────── -->
+    <section class="stat-prev">
+      <div class="stat-prev__slider-wrap">
+        <div class="stat-prev__slider" id="statSlider">
+
+          <!-- ── SLIDE 1: Sexueller Übergriff 18% / 4% ── -->
+          <div class="stat-prev__slide">
+            <div class="stat-prev__inner">
+              <img class="stat-prev__img" src="./Übergriff.png" alt="Lebenszeitprävalenz für sexuellen Übergriff: 18% der Frauen, 4% der Männer" />
+            
+            </div>
+            <div class="stat-prev__meta">
+              <div class="stat-prev__dots" aria-hidden="true">
+                <span class="dot dot--active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+              <p class="stat-prev__label">Lebenszeitprävalenz für sexueller Übergriff</p>
+              <p class="stat-prev__source">Quelle: Leitgöb-Guzy &amp; Bieber (2026), LeSuBiA I, Abb. 49: Lebenszeitprävalenz für sexuellen Übergriff.</p>
+            </div>
+          </div>
+
+          <!-- ── SLIDE 2: Sexuelle Belästigung 41% / 12% ── -->
+          <div class="stat-prev__slide">
+            <div class="stat-prev__inner">
+              <img class="stat-prev__img" src="./Mit Körperkontakt.png" alt="Lebenszeitprävalenz für sexuelle Belästigung mit Körperkontakt: 41% der Frauen, 12% der Männer" />
+            
+            </div>
+            <div class="stat-prev__meta">
+              <div class="stat-prev__dots" aria-hidden="true">
+                <span class="dot"></span>
+                <span class="dot dot--active"></span>
+                <span class="dot"></span>
+              </div>
+              <p class="stat-prev__label">Lebenszeitprävalenz für sexuelle Belästigung mit Körperkontakt</p>
+              <p class="stat-prev__source">Quelle: Leitgöb-Guzy &amp; Bieber (2026), LeSuBiA I, Abb. 43: Lebenszeitprävalenz für sexuelle Belästigung mit Körperkontakt.</p>
+            </div>
+          </div>
+
+          <!-- ── SLIDE 3: Belästigung ohne Körperkontakt 57% / 24% ── -->
+          <div class="stat-prev__slide">
+            <div class="stat-prev__inner">
+              <img class="stat-prev__img" src="./Ohne Körperkontakt.png" alt="Lebenszeitprävalenz für sexuelle Belästigung ohne Körperkontakt: 57% der Frauen, 24% der Männer" />
+            
+            </div>
+            <div class="stat-prev__meta">
+              <div class="stat-prev__dots" aria-hidden="true">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot dot--active"></span>
+              </div>
+              <p class="stat-prev__label">Lebenszeitprävalenz für sexuelle Belästigung ohne Körperkontakt</p>
+              <p class="stat-prev__source">Quelle: Leitgöb-Guzy &amp; Bieber (2026), LeSuBiA I, Abb. 37: Lebenszeitprävalenz für sexuelle Belästigung ohne Körperkontakt.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 3. BILD ──────────────────────────────────────────── -->
+    <div class="detail-image">
+      <img src="./_M0A7886.jpg" alt="Foto zu Sexismus im Alltag" />
+    </div>
+
+    <!-- ── 4. INFOTEXT ─────────────────────────────────────── -->
+    <section class="infotext">
+      <h2 class="infotext__heading">Warum es uns alle betrifft</h2>
+      <div class="infotext__body">
+        <p class="infotext__text">
+          Wer im öffentlichen Raum ständig belästigt wird, leidet unter einer eingeschränkten Bewegungsfreiheit und Lebensqualität. Dabei betrifft Sexismus auch <a href="hintergrund.html#begriffserklaerungen" class="term-link">männlich gelesene.</a> Sie leiden unter Stereotypen, die sie zwingen, einem Bild von Stärke und emotionaler Distanz zu entsprechen. Offen darüber zu reden hilft, das Thema zu enttabuisieren.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── 5. INFOTEXT ─────────────────────────────────────── -->
+    <section class="infotext">
+      <h2 class="infotext__heading">Die Rechnung geht nicht auf</h2>
+      <div class="infotext__body">
+        <div>
+          <p class="infotext__text">
+            Das Sicherheitsgefühl im öffentlichen Raum ist ungleich verteilt. Während männlich gelesene sich meist frei bewegen, fühlen sich weiblich gelesene besonders nachts deutlich unsicherer.
+          </p>
+          <p class="infotext__text" style="margin-top:1em">
+            Die Angst vor Belästigung beeinflusst alltägliche Entscheidungen. Sie kostet Energie und Geld. Längere Wege werden in Kauf genommen, der ÖPNV gemieden, bestimmte Orte werden ganz gemieden.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 6. STATISTIK VERMEIDEVERHALTEN ─────────────────────── -->
+    <h2 class="infotext__heading">Vermeideverhalten</h2>
+    <section class="stat-avoid" aria-label="Vermeideverhalten im öffentlichen Raum">
+      <div class="stat-avoid__bars">
+
+        <div class="bar-group">
+          <p class="bar-group__label">Nachts Fremden ausweichen</p>
+          <div class="bar-pair">
+            <div class="bar-row"><div class="bar bar--women" style="width:229px"><span class="bar__val">57,2%</span></div></div>
+            <div class="bar-row"><div class="bar bar--men" style="width:103px"><span class="bar__val">25,7%</span></div></div>
+          </div>
+        </div>
+
+        <div class="bar-group">
+          <p class="bar-group__label">Nachts den ÖPNV meiden</p>
+          <div class="bar-pair">
+            <div class="bar-row"><div class="bar bar--women" style="width:193px"><span class="bar__val">48,1%</span></div></div>
+            <div class="bar-row"><div class="bar bar--men" style="width:92px"><span class="bar__val">22,9%</span></div></div>
+          </div>
+        </div>
+
+        <div class="bar-group">
+          <p class="bar-group__label">Meiden, nachts das Haus zu verlassen</p>
+          <div class="bar-pair">
+            <div class="bar-row"><div class="bar bar--women" style="width:162px"><span class="bar__val">40,5%</span></div></div>
+            <div class="bar-row"><div class="bar bar--men" style="width:63px"><span class="bar__val">15,7%</span></div></div>
+          </div>
+        </div>
+
+        <div class="bar-group">
+          <p class="bar-group__label">Nachts nur in Begleitung das Haus verlassen</p>
+          <div class="bar-pair">
+            <div class="bar-row"><div class="bar bar--women" style="width:156px"><span class="bar__val">39,0%</span></div></div>
+            <div class="bar-row"><div class="bar bar--men" style="width:47px"><span class="bar__val">11,7%</span></div></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="stat-legend">
+        <div class="legend-item">
+          <span class="legend-swatch legend-swatch--women"></span>
+          <span class="legend-label">Weiblich gelesene</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-swatch legend-swatch--men"></span>
+          <span class="legend-label">Männlich gelesene</span>
+        </div>
+      </div>
+
+      <p class="stat-avoid__source">Quelle: Bundeskriminalamt (BKA), Sicherheit und Kriminalität in Deutschland 2024 (SKiD 2024), Abb. 29.</p>
+    </section>
+
+    <!-- ── 7. TEXTLINKS ────────────────────────────────────── -->
+    <nav class="detail-links" aria-label="Weitere Themen">
+      <a href="hinsehen-2.html" class="detail-link">
+        <span class="detail-link__label">Verstehe deine Unsicherheit</span>
+        <svg class="detail-link__arrow" viewBox="0 0 20 20" fill="none">
+          <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="#E6301E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a href="hinsehen-3.html" class="detail-link">
+        <span class="detail-link__label">Wie uns Rollenbilder prägen</span>
+        <svg class="detail-link__arrow" viewBox="0 0 20 20" fill="none">
+          <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="#E6301E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </nav>
+
+  </main>
+
+  <!-- FOOTER — Logo: h=24px, weiß via CSS-Filter -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <nav class="footer__links" aria-label="Footer-Navigation">
+        <a href="hilfe.html" class="footer__textlink">
+          <span class="footer__textlink-label">Hilfe &amp; Anlaufstellen</span>
+          <div class="footer__textlink-arrow-slot">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M6.167 6.167H17.833M17.833 6.167V17.833M17.833 6.167L6 18" stroke="#FFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
+        <a href="impressum.html" class="footer__textlink">
+          <span class="footer__textlink-label">Impressum</span>
+          <div class="footer__textlink-arrow-slot">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M6.167 6.167H17.833M17.833 6.167V17.833M17.833 6.167L6 18" stroke="#FFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
+      </nav>
+      <a href="#" class="footer__logo" aria-label="(Un)gezähmt – Startseite">
+        <img src="./logoinvertiert.png" alt="(Un)gezähmt" />
+      </a>
+    </div>
+  </footer>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

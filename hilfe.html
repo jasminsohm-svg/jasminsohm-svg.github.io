@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>(Un)gezähmt – Hilfe und Anlaufstellen</title>
+  <link rel="stylesheet" href="https://use.typekit.net/mqg6bai.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+
+    /* ── SEITE ──────────────────────────────────────────── */
+    .page--hilfe main {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      padding-bottom: 40px;
+    }
+
+    /* ── TOP BLOCK (navbar gap + content) ───────────────── */
+    .hilfe-top {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      width: 100%;
+    }
+
+    .hilfe-content {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      width: 100%;
+    }
+
+    /* ── SEITENHEADLINE ─────────────────────────────────── */
+    .hilfe-h1 {
+      font-size: 26px;
+      font-weight: 400;
+      line-height: 32px;
+      color: #000;
+      padding: 0 16px;
+    }
+
+    /* ── SECTION HEADLINE ───────────────────────────────── */
+    .section-h2 {
+      font-size: 26px;
+      font-weight: 400;
+      line-height: 1;
+      color: #000;
+      padding: 0 16px;
+    }
+
+    /* ── NOTFALLNUMMERN ─────────────────────────────────── */
+    .notfall-section {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      width: 100%;
+    }
+
+    .notfall-pills {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 0 16px;
+    }
+
+    .pill {
+      display: flex;
+      justify-content: center;
+      align-self: flex-start;
+      padding: 10px 16px 12px;
+      background: #E6301E;
+      border: 1px solid #E6301E;
+      border-radius: 20px;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1;
+      color: #fff;
+      white-space: nowrap;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    /* ── SICHERHEITSZEICHEN ─────────────────────────────── */
+    .sicherheit-section {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      width: 100%;
+    }
+
+    /* ── INFOTEXT ───────────────────────────────────────── */
+    .infotext {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      width: 100%;
+    }
+
+    .infotext__heading {
+      padding-left: 16px;
+      padding-right: 16px;
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 27px;
+      color: #000;
+    }
+
+    .infotext__body {
+      display: flex;
+      justify-content: flex-end;
+      padding: 0 16px;
+    }
+
+    .infotext__inner {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      width: 259px;
+      align-items: flex-start;
+    }
+
+    .infotext__text {
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 20px;
+      color: #000;
+    }
+
+    .infotext__text strong {
+      font-weight: 500;
+    }
+
+    .infotext__text ol {
+      margin: 8px 0 0;
+      padding-left: 20px;
+    }
+
+    .infotext__text li {
+      margin-bottom: 4px;
+    }
+
+    /* ── ILLUSTRATION ───────────────────────────────────── */
+    .hilfe-illu {
+      display: block;
+      width: 159px;
+      height: 100px;
+      object-fit: contain;
+    }
+
+    /* ── TEXTLINK BUTTON ────────────────────────────────── */
+    .textlink-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 16px 12px;
+      border: 1px solid #E6301E;
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1;
+      color: #000;
+      white-space: nowrap;
+    }
+
+    .textlink-btn svg {
+      flex-shrink: 0;
+    }
+
+    .infotext__footer {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: flex-end;
+      padding: 0 16px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .infotext__footer-text {
+      width: 259px;
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 20px;
+      color: #000;
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ─── MOBILE MENU OVERLAY ─────────────────────────────── -->
+<div class="menu-overlay" id="menuOverlay" role="dialog" aria-modal="true" aria-label="Navigation">
+  <button class="menu-overlay__close" id="menuClose" aria-label="Menü schließen">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <line x1="4" y1="4" x2="20" y2="20" stroke="#fff" stroke-width="1.5"/>
+      <line x1="20" y1="4" x2="4" y2="20" stroke="#fff" stroke-width="1.5"/>
+    </svg>
+  </button>
+  <nav class="menu-overlay__nav">
+    <a href="index.html" class="menu-overlay__item">Home</a>
+    <a href="hinsehen.html" class="menu-overlay__item">Hinsehen</a>
+    <a href="handeln.html" class="menu-overlay__item">Handeln</a>
+    <a href="hilfe.html" class="menu-overlay__item is-active">Soforthilfe</a>
+    <a href="handeln-3.html" class="menu-overlay__item">Catcalling melden</a>
+    <a href="hintergrund.html" class="menu-overlay__item">Hintergrund</a>
+  </nav>
+</div>
+
+<!-- ─── PAGE ─────────────────────────────────────────────── -->
+<div class="page page--hilfe">
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="navbar__inner">
+      <button class="navbar__menu-btn" id="menuOpen" aria-label="Menü öffnen" aria-expanded="false" aria-controls="menuOverlay">
+        <span class="hamburger" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </span>
+        <span class="navbar__menu-label">Menü</span>
+      </button>
+      <a href="index.html" class="navbar__logo" aria-label="(Un)gezähmt – Startseite">
+        <img src="./logo.png" alt="(Un)gezähmt" style="height:30px;width:auto;display:block;" />
+      </a>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ── TOP BLOCK ─────────────────────────────────────── -->
+    <div class="hilfe-top">
+      <div class="hilfe-content">
+
+        <!-- Seitenheadline -->
+        <h1 class="hilfe-h1">Soforthilfe</h1>
+
+        <!-- Notfallnummern -->
+        <div class="notfall-section">
+          <h2 class="section-h2">Notfallnummern</h2>
+          <div class="notfall-pills">
+            <a href="tel:110" class="pill">Notruf Polizei</a>
+            <a href="tel:03012074182" class="pill">Heimwegtelefon</a>
+            <a href="tel:116016" class="pill">Gewalt gegen Frauen</a>
+            <a href="tel:116006" class="pill">Weißer Ring</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── SICHERHEITSZEICHEN ─────────────────────────────── -->
+    <div class="sicherheit-section">
+
+      <h2 class="section-h2">Sicherheitszeichen</h2>
+
+      <!-- Stiller Hilferuf -->
+      <div class="infotext">
+        <h3 class="infotext__heading">Stiller Hilferuf</h3>
+        <div class="infotext__body">
+          <div class="infotext__inner">
+            <div class="infotext__text">
+              Das internationale Hilfezeichen ist ein stilles Handzeichen, mit dem du unauffälig zeigen kannst, dass du Hilfe brauchst.
+              <br><br>
+              <strong>So wendest du es an:</strong>
+              <ol>
+                <li>Die Handfläche wird nach außen gezeigt.</li>
+                <li>Der Daumen wird in die Handfläche gelegt.</li>
+                <li>Die vier Finger werden über den Daumen geschlossen.</li>
+              </ol>
+            </div>
+            <img class="hilfe-illu" src="./HändeIllu.jpg" alt="Illustration Stiller Hilferuf" />
+            <p class="infotext__text">
+              Falls du jemand siehst, der das Zeichen zeigt, solltest du dich an den Handlungsleitfaden orientieren.
+            </p>
+          </div>
+        </div>
+        <div style="display:flex; justify-content:flex-end; padding: 0 16px;">
+          <a href="handeln-2.html" class="textlink-btn">
+            So kannst du helfen
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M6.167 6.167H17.833M17.833 6.167V17.833M17.833 6.167L6 18" stroke="#E6301E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- "Ist Luisa da?" -->
+      <div class="infotext">
+        <h3 class="infotext__heading">"Ist Luisa da?"</h3>
+        <div class="infotext__body">
+          <div class="infotext__inner">
+            <p class="infotext__text">
+              Mit dem Satz „Ist Luisa da?" kannst du in Lokalen diskret Hilfe holen, wenn du dich unwohl oder belästigt fühlst. Das Personal weiß Bescheid und unterstützt dich.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- "Einen Angelshot, bitte" -->
+      <div class="infotext">
+        <h3 class="infotext__heading">"Ich möchte einen Angelshot, bitte"</h3>
+        <div class="infotext__body">
+          <div class="infotext__inner">
+            <p class="infotext__text">
+              Mit einem Angel Shot kannst du in Bars unauffällig zeigen, dass du Hilfe brauchst. Das Personal reagiert darauf und hilft dir, sicher aus der Situation zu kommen.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <nav class="footer__links" aria-label="Footer-Navigation">
+        <a href="hilfe.html" class="footer__textlink">
+          <span class="footer__textlink-label">Hilfe &amp; Anlaufstellen</span>
+          <div class="footer__textlink-arrow-slot">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M6.167 6.167H17.833M17.833 6.167V17.833M17.833 6.167L6 18" stroke="#FFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
+        <a href="impressum.html" class="footer__textlink">
+          <span class="footer__textlink-label">Impressum</span>
+          <div class="footer__textlink-arrow-slot">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M6.167 6.167H17.833M17.833 6.167V17.833M17.833 6.167L6 18" stroke="#FFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
+      </nav>
+      <a href="index.html" class="footer__logo" aria-label="(Un)gezähmt – Startseite">
+        <img src="./logoinvertiert.png" alt="(Un)gezähmt" />
+      </a>
+    </div>
+  </footer>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

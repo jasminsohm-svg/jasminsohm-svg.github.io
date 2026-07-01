@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>(Un)gezähmt – Home</title>
+  <link rel="stylesheet" href="https://use.typekit.net/mqg6bai.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+
+    /* ── SEITE ──────────────────────────────────────────── */
+    .page--home {
+      gap: 40px;
+      padding-bottom: 0;
+      min-height: 100dvh;
+    }
+
+    .page--home .footer {
+      margin-top: auto;
+    }
+
+    .page--home main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+      padding: 0 16px;
+    }
+
+    /* ── HEADER ANIMATION ───────────────────────────────── */
+    .home-animation-wrap {
+      width: 328px;
+      height: 328px;
+      flex-shrink: 0;
+      position: relative;
+      background: #EDEDED;
+    }
+
+    .home-animation {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border: none;
+      outline: none;
+      clip-path: inset(2px);
+    }
+
+    /* ── CARD LINK ──────────────────────────────────────── */
+    .card-link {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      border: 1px solid #E6301E;
+      padding: 16px;
+      width: 328px;
+      box-sizing: border-box;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .card-link__text {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+    }
+
+    .card-link__headline {
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 1;
+      color: #000;
+    }
+
+    .card-link__body {
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 20px;
+      color: #000;
+      width: 243px;
+    }
+
+    .card-link__arrow {
+      flex-shrink: 0;
+      width: 37px;
+      height: 24px;
+    }
+
+    .card-link-group {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      width: 328px;
+    }
+
+    /* ── INFOTEXT: GRENZENLOS ÜBERGRIFFIG ───────────────── */
+    .home-infotext {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      width: calc(100% + 32px);
+      margin: 0 -16px;
+      padding: 0 16px;
+      box-sizing: border-box;
+    }
+
+    .home-infotext__heading {
+      font-size: 26px;
+      font-weight: 400;
+      line-height: 32px;
+      color: #000;
+    }
+
+    .home-infotext__text {
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 20px;
+      color: #000;
+      width: 259px;
+    }
+
+    /* ── ZITATE ──────────────────────────────────────────── */
+    .home-quotes {
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+      width: calc(100% + 32px);
+      margin: 0 -16px;
+      padding: 0 16px;
+      box-sizing: border-box;
+    }
+
+    .home-quote {
+      display: flex;
+      width: 100%;
+    }
+
+    .home-quote--right { justify-content: flex-end; }
+    .home-quote--left  { justify-content: flex-start; }
+
+    .home-quote p {
+      width: 259px;
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 20px;
+      color: #000;
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ─── MOBILE MENU OVERLAY ─────────────────────────────── -->
+<div class="menu-overlay" id="menuOverlay" role="dialog" aria-modal="true" aria-label="Navigation">
+  <button class="menu-overlay__close" id="menuClose" aria-label="Menü schließen">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <line x1="4" y1="4" x2="20" y2="20" stroke="#fff" stroke-width="1.5"/>
+      <line x1="20" y1="4" x2="4" y2="20" stroke="#fff" stroke-width="1.5"/>
+    </svg>
+  </button>
+  <nav class="menu-overlay__nav">
+    <a href="index.html" class="menu-overlay__item is-active">Home</a>
+    <a href="hinsehen.html" class="menu-overlay__item">Hinsehen</a>
+    <a href="handeln.html" class="menu-overlay__item">Handeln</a>
+    <a href="hilfe.html" class="menu-overlay__item">Soforthilfe</a>
+    <a href="handeln-3.html" class="menu-overlay__item">Catcalling melden</a>
+    <a href="hintergrund.html" class="menu-overlay__item">Hintergrund</a>
+  </nav>
+</div>
+
+<!-- ─── PAGE ─────────────────────────────────────────────── -->
+<div class="page page--home">
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="navbar__inner">
+      <button class="navbar__menu-btn" id="menuOpen" aria-label="Menü öffnen" aria-expanded="false" aria-controls="menuOverlay">
+        <span class="hamburger" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </span>
+        <span class="navbar__menu-label">Menü</span>
+      </button>
+      <a href="index.html" class="navbar__logo" aria-label="(Un)gezähmt – Startseite">
+        <img src="./logo.png" alt="(Un)gezähmt" style="height:30px;width:auto;display:block;" />
+      </a>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ── HEADER ANIMATION ──────────────────────────────── -->
+    <div class="home-animation-wrap">
+      <video class="home-animation" autoplay loop muted playsinline>
+        <source src="./Sliced glass.webm" type="video/webm">
+      </video>
+    </div>
+
+    <!-- ── CARD LINKS ────────────────────────────────────── -->
+    <div class="card-link-group">
+      <a href="hilfe.html" class="card-link">
+        <div class="card-link__text">
+          <span class="card-link__headline">Für den Notfall</span>
+          <span class="card-link__body">Wichtige Notrufnummern und Sicherheitszeichen auf einen Blick.</span>
+        </div>
+        <svg class="card-link__arrow" viewBox="0 0 37 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5.167 5.167H18.833M18.833 5.167V18.833M18.833 5.167L5 19" stroke="#E6301E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+
+      <a href="handeln-3.html" class="card-link">
+        <div class="card-link__text">
+          <span class="card-link__headline">Catcalling melden</span>
+          <span class="card-link__body">Du wurdest belästigt? Gebe jetzt dem Vorfall Sichtbarkeit.</span>
+        </div>
+        <svg class="card-link__arrow" viewBox="0 0 37 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5.167 5.167H18.833M18.833 5.167V18.833M18.833 5.167L5 19" stroke="#E6301E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- ── INFOTEXT: GRENZENLOS ÜBERGRIFFIG ───────────────── -->
+    <div class="home-infotext">
+      <h2 class="home-infotext__heading">Grenzenlos übergriffig</h2>
+      <p class="home-infotext__text">Diese Vorfälle wurden gemeldet, sind real und schaffen hier Sichtbarkeit.</p>
+    </div>
+
+    <!-- ── ZITATE ──────────────────────────────────────────── -->
+    <div class="home-quotes">
+      <div class="home-quote home-quote--right">
+        <p>„Ein Auto fährt extrem langsam an mir vorbei. Der Fahrer schaut mich an und pfeift. Er fährt weiter und dreht sich nochmal um.“</p>
+      </div>
+      <div class="home-quote home-quote--left">
+        <p>„Ein Mann setzt sich nachts ungefragt neben mich, macht mir Komplimente“. Je mehr ich wegrücke, desto näher kommt er, bis er mich berührt. Er läuft mir dann noch fünf Minuten hinterher.“</p>
+      </div>
+      <div class="home-quote home-quote--right">
+        <p>Ich bin mit dem Fahrrad gestürzt. Einige bieten ihre Hilfe an. Ein Mann ruft von Weitem: „Die Mund- zu Mund-Beatmung würde ich machen.“</p>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <nav class="footer__links" aria-label="Footer-Navigation">
+        <a href="hilfe.html" class="footer__textlink">
+          <span class="footer__textlink-label">Hilfe &amp; Anlaufstellen</span>
+          <div class="footer__textlink-arrow-slot">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M6.167 6.167H17.833M17.833 6.167V17.833M17.833 6.167L6 18" stroke="#FFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
+        <a href="impressum.html" class="footer__textlink">
+          <span class="footer__textlink-label">Impressum</span>
+          <div class="footer__textlink-arrow-slot">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M6.167 6.167H17.833M17.833 6.167V17.833M17.833 6.167L6 18" stroke="#FFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
+      </nav>
+      <a href="index.html" class="footer__logo" aria-label="(Un)gezähmt – Startseite">
+        <img src="./logoinvertiert.png" alt="(Un)gezähmt" />
+      </a>
+    </div>
+  </footer>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

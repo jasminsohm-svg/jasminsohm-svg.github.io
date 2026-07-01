@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>(Un)gezähmt – Hinsehen</title>
+
+
+<link rel="stylesheet" href="https://use.typekit.net/mqg6bai.css">
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<!-- ─── MOBILE MENU OVERLAY ─────────────────────────────── -->
+<div class="menu-overlay" id="menuOverlay" role="dialog" aria-modal="true" aria-label="Navigation">
+  <button class="menu-overlay__close" id="menuClose" aria-label="Menü schließen">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="4" y1="4" x2="20" y2="20" stroke="#fff" stroke-width="1.5"/>
+      <line x1="20" y1="4" x2="4" y2="20" stroke="#fff" stroke-width="1.5"/>
+    </svg>
+  </button>
+  <nav class="menu-overlay__nav">
+    <a href="index.html" class="menu-overlay__item">Home</a>
+    <a href="hinsehen.html" class="menu-overlay__item is-active">Hinsehen</a>
+    <a href="handeln.html" class="menu-overlay__item">Handeln</a>
+    <a href="hilfe.html" class="menu-overlay__item">Soforthilfe</a>
+    <a href="handeln-3.html" class="menu-overlay__item">Catcalling melden</a>
+    <a href="hintergrund.html" class="menu-overlay__item">Hintergrund</a>
+  </nav>
+</div>
+
+<!-- ─── PAGE ─────────────────────────────────────────────── -->
+<div class="page">
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="navbar__inner">
+      <button class="navbar__menu-btn" id="menuOpen" aria-label="Menü öffnen" aria-expanded="false" aria-controls="menuOverlay">
+        <span class="hamburger" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+        <span class="navbar__menu-label">Menü</span>
+      </button>
+
+      <a href="index.html" class="navbar__logo" aria-label="(Un)gezähmt – Startseite">
+        <img src="./logo.png" alt="(Un)gezähmt" style="height:30px;width:auto;display:block;" />
+      </a>
+    </div>
+  </header>
+
+  <!-- INTRO SECTIONS -->
+  <main class="intro-sections" id="main-content">
+
+    <!-- Karte 1: Sexismus ist nie harmlos -->
+    <article class="intro-card">
+      <h2 class="intro-card__headline">Sexismus ist nie harmlos</h2>
+      <div class="intro-card__body-wrap">
+        <div class="intro-card__body-inner">
+          <p class="intro-card__text">
+            Sexismus ist oft leise, aber nie harmlos. Er prägt, wie sicher und frei Menschen
+            sich im Alltag fühlen. Genau hinzusehen macht sichtbar, was sonst schnell
+            übersehen wird.
+          </p>
+          <a href="hinsehen-1.html" class="mehr-lesen">
+            <span class="mehr-lesen__label">Mehr lesen</span>
+            <svg class="mehr-lesen__arrow" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="#E6301E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Karte 2: Verstehe deine Unsicherheit -->
+    <article class="intro-card">
+      <h2 class="intro-card__headline">Verstehe deine Unsicherheit</h2>
+      <div class="intro-card__body-wrap">
+        <div class="intro-card__body-inner">
+          <p class="intro-card__text">
+            Unsicherheit entsteht nicht nur durch Gefahr, sondern auch durch das, was wir
+            gelernt haben zu fürchten. Wer das hinterfragt, versteht Sicherheit oft ganz neu.
+          </p>
+          <a href="hinsehen-2.html" class="mehr-lesen">
+            <span class="mehr-lesen__label">Mehr lesen</span>
+            <svg class="mehr-lesen__arrow" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="#E6301E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Karte 3: Wie uns Rollenbilder prägen -->
+    <article class="intro-card">
+      <h2 class="intro-card__headline">Wie uns Rollenbilder prägen</h2>
+      <div class="intro-card__body-wrap">
+        <div class="intro-card__body-inner">
+          <p class="intro-card__text">
+            Unsere Vorstellungen, wie ein Geschlecht zu sein hat, entstehen nicht zufällig. Sie werden früh gelernt und prägen, wie Menschen sich selbst und andere wahrnehmen. Wer die Wurzeln versteht, erkennt auch ihre Auswirkungen im Alltag.
+          </p>
+          <a href="hinsehen-3.html" class="mehr-lesen">
+            <span class="mehr-lesen__label">Mehr lesen</span>
+            <svg class="mehr-lesen__arrow" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="#E6301E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </article>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__inner">
+
+      <!-- Links-Spalte: 162px breit, Pfeile immer auf x=137 -->
+      <nav class="footer__links" aria-label="Footer-Navigation">
+
+        <a href="hilfe.html" class="footer__textlink">
+          <span class="footer__textlink-label">Hilfe &amp; Anlaufstellen</span>
+          <div class="footer__textlink-arrow-slot">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M6.16687 6.16687H17.8331M17.8331 6.16687V17.8331M17.8331 6.16687L6 18" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
+
+        <a href="impressum.html" class="footer__textlink">
+          <span class="footer__textlink-label">Impressum</span>
+          <div class="footer__textlink-arrow-slot">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M6.16687 6.16687H17.8331M17.8331 6.16687V17.8331M17.8331 6.16687L6 18" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
+
+      </nav>
+
+      <!-- Logo rechts, oben bündig -->
+      <a href="#" class="footer__logo" aria-label="(Un)gezähmt – Startseite">
+        <img src="./logoinvertiert.png" alt="(Un)gezähmt" />
+      </a>
+
+    </div>
+  </footer>
+
+</div><!-- /.page -->
+
+    <script src="script.js"></script>
+
+</body>
+</html>
+
