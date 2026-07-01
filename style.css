@@ -26,7 +26,7 @@
 
       /* spacing */
       --page-px:  16px;
-      --page-w:   360px;
+      --page-w:   768px;
     }
 
     /* ─── RESET ──────────────────────────────────────────── */
@@ -50,6 +50,8 @@
 
     /* ─── PAGE SHELL ─────────────────────────────────────── */
     .page {
+      min-width: 320px;
+      width: 100vw;
       max-width: var(--page-w);
       margin: 0 auto;
       background: var(--color-bg);
