@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>(Un)gezähmt – Impressum</title>
   <link rel="stylesheet" href="https://use.typekit.net/mqg6bai.css">
   <link rel="stylesheet" href="style.css">
@@ -10,7 +10,7 @@
 
     /* ── SEITE ──────────────────────────────────────────── */
     .page--impressum {
-      min-height: 100dvh;
+      min-height: max(var(--page-min-h), 100dvh);
     }
 
     .page--impressum .footer {
@@ -108,7 +108,7 @@
         <span class="navbar__menu-label">Menü</span>
       </button>
       <a href="index.html" class="navbar__logo" aria-label="(Un)gezähmt – Startseite">
-        <img src="./logo.png" alt="(Un)gezähmt" style="height:30px;width:auto;display:block;" />
+        <img src="./logo.png" alt="(Un)gezähmt" style="height:33px;width:auto;display:block;" />
       </a>
     </div>
   </header>
@@ -134,7 +134,7 @@
 
     <!-- ── PROJEKTBESCHREIBUNG ────────────────────────────── -->
     <div class="impressum-block">
-      <p class="impressum-text">Diese Website entstand im Rahmen unseres Bachelorprojekts im Studiengang Kommunikationsgestaltung an der Hochschule für Gestaltung Schwäbisch Gmünd.</p>
+      <p class="impressum-text">Diese Website entstand im Rahmen unseres Bachelorprojekts an der Hochschule für Gestaltung Schwäbisch Gmünd im Studiengang Kommunikationsgestaltung.</p>
     </div>
 
   </main>

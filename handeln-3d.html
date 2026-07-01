@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>(Un)gezähmt – Wer hat belästigt?</title>
   <link rel="stylesheet" href="https://use.typekit.net/mqg6bai.css">
   <link rel="stylesheet" href="style.css">
@@ -10,14 +10,14 @@
 
     .page--meldetool {
       min-height: max(var(--page-min-h), 100dvh);
-      padding-bottom: 96px;
+      padding-bottom: calc(96px + env(safe-area-inset-bottom));
     }
 
     .page--meldetool main {
       display: flex;
       flex-direction: column;
       gap: 24px;
-      padding-top: 24px;
+      padding-top: calc(24px + env(safe-area-inset-top));
     }
 
     /* ── LEISTE ───────────────────────────────────────────── */
@@ -137,7 +137,7 @@
       width: 100vw;
       min-width: var(--page-min-w);
       max-width: var(--page-max-w);
-      padding: 10px 16px 20px;
+      padding: 10px 16px calc(20px + env(safe-area-inset-bottom));
       box-sizing: border-box;
       background: var(--color-bg);
     }
