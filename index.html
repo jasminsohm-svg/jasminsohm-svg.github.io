@@ -16,7 +16,7 @@
     .page--home {
       gap: 40px;
       padding-bottom: 0;
-      min-height: 100dvh;
+      min-height: clamp(var(--page-min-h), 100dvh, var(--page-max-h));
       background-image: url('./Farbverlauf.png');
       background-size: cover;
       background-position: center top;
@@ -196,7 +196,7 @@
         <span class="navbar__menu-label">Menü</span>
       </button>
       <a href="index.html" class="navbar__logo" aria-label="(Un)gezähmt – Startseite">
-        <img src="./logoinvertiert.png" alt="(Un)gezähmt" style="height:30px;width:auto;display:block;" />
+        <img src="./logoinvertiert.png" alt="(Un)gezähmt" style="height:33px;width:auto;display:block;" />
       </a>
     </div>
   </header>
@@ -205,9 +205,7 @@
 
     <!-- ── HEADER ANIMATION ──────────────────────────────── -->
     <div class="home-animation-wrap">
-      <video class="home-animation" autoplay loop muted playsinline>
-        <source src="./Animationhome.webm" type="video/webm">
-      </video>
+      <img class="home-animation" src="./Slicedglass2.gif" alt="" aria-hidden="true" />
     </div>
 
     <!-- ── CARD LINKS ────────────────────────────────────── -->

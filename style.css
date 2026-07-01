@@ -26,7 +26,10 @@
 
       /* spacing */
       --page-px:  16px;
-      --page-w:   768px;
+      --page-min-w: 375px;
+      --page-max-w: 402px;
+      --page-min-h: 667px;
+      --page-max-h: 874px;
     }
 
     /* ─── RESET ──────────────────────────────────────────── */
@@ -50,12 +53,12 @@
 
     /* ─── PAGE SHELL ─────────────────────────────────────── */
     .page {
-      min-width: 320px;
+      min-width: var(--page-min-w);
       width: 100vw;
-      max-width: var(--page-w);
+      max-width: var(--page-max-w);
       margin: 0 auto;
       background: var(--color-bg);
-      min-height: 100vh;
+      min-height: clamp(var(--page-min-h), 100dvh, var(--page-max-h));
       display: flex;
       flex-direction: column;
     }
@@ -264,9 +267,12 @@
     .menu-overlay {
       position: fixed;
       top: 0;
-      left: 50%;
-      margin-left: calc(var(--page-w) / -2);
-      width: var(--page-w);
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      width: 100vw;
+      min-width: var(--page-min-w);
+      max-width: var(--page-max-w);
       height: 100dvh;
       background: var(--color-accent);
       z-index: 100;
@@ -574,8 +580,8 @@
       display: flex;
       align-items: center;
       position: relative;
-      /* max-width = 328px (360 - 2*16), width is set inline as % of full container */
-      max-width: calc(var(--page-w) - 2 * var(--page-px));
+      /* width is set inline as % of full container, capped at content width of the widest page */
+      max-width: calc(var(--page-max-w) - 2 * var(--page-px));
     }
 
     .stat-bar--women {

@@ -7,12 +7,19 @@
   <link rel="stylesheet" href="https://use.typekit.net/mqg6bai.css">
   <link rel="stylesheet" href="style.css">
   <style>
-
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
     /* ── SEITE ──────────────────────────────────────────── */
     .page--home {
       gap: 40px;
       padding-bottom: 0;
-      min-height: 100dvh;
+      min-height: clamp(var(--page-min-h), 100dvh, var(--page-max-h));
+      background-image: url('./Farbverlauf.png');
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
     }
 
     .page--home .footer {
@@ -29,21 +36,18 @@
 
     /* ── HEADER ANIMATION ───────────────────────────────── */
     .home-animation-wrap {
-      width: 328px;
-      height: 328px;
+      width: calc(100% + 32px);
+      margin: 0 -16px;
       flex-shrink: 0;
       position: relative;
-      background: #EDEDED;
     }
 
     .home-animation {
       display: block;
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
       border: none;
       outline: none;
-      clip-path: inset(2px);
     }
 
     /* ── CARD LINK ──────────────────────────────────────── */
@@ -51,7 +55,7 @@
       display: flex;
       gap: 16px;
       align-items: flex-start;
-      border: 1px solid #E6301E;
+      border: 1px solid #EDEDED;
       padding: 16px;
       width: 328px;
       box-sizing: border-box;
@@ -70,14 +74,14 @@
       font-size: 22px;
       font-weight: 400;
       line-height: 1;
-      color: #000;
+      color: #EDEDED;
     }
 
     .card-link__body {
       font-size: 16px;
       font-weight: 300;
       line-height: 20px;
-      color: #000;
+      color: #EDEDED;
       width: 243px;
     }
 
@@ -109,14 +113,14 @@
       font-size: 26px;
       font-weight: 400;
       line-height: 32px;
-      color: #000;
+      color: #EDEDED;
     }
 
     .home-infotext__text {
       font-size: 16px;
       font-weight: 300;
       line-height: 20px;
-      color: #000;
+      color: #EDEDED;
       width: 259px;
     }
 
@@ -133,19 +137,28 @@
 
     .home-quote {
       display: flex;
+      justify-content: flex-end;
       width: 100%;
     }
-
-    .home-quote--right { justify-content: flex-end; }
-    .home-quote--left  { justify-content: flex-start; }
 
     .home-quote p {
       width: 259px;
       font-size: 16px;
       font-weight: 300;
       line-height: 20px;
-      color: #000;
+      color: #EDEDED;
     }
+
+    /* ── NAVBAR auf Farbverlauf ──────────────────────────── */
+    .page--home .navbar__menu-label { color: #EDEDED; }
+    .page--home .hamburger span     { background: #EDEDED; }
+
+    /* ── FOOTER ──────────────────────────────────────────── */
+    .page--home .footer {
+      background: #EDEDED;
+    }
+    .page--home .footer__textlink-label    { color: #E6301E; }
+    .page--home .footer__textlink svg path { stroke: #E6301E; }
 
   </style>
 </head>
@@ -182,7 +195,7 @@
         <span class="navbar__menu-label">Menü</span>
       </button>
       <a href="index.html" class="navbar__logo" aria-label="(Un)gezähmt – Startseite">
-        <img src="./logo.png" alt="(Un)gezähmt" style="height:30px;width:auto;display:block;" />
+        <img src="./logoinvertiert.png" alt="(Un)gezähmt" style="height:33px;width:auto;display:block;" />
       </a>
     </div>
   </header>
@@ -191,9 +204,7 @@
 
     <!-- ── HEADER ANIMATION ──────────────────────────────── -->
     <div class="home-animation-wrap">
-      <video class="home-animation" autoplay loop muted playsinline>
-        <source src="./Sliced glass.webm" type="video/webm">
-      </video>
+      <img class="home-animation" src="./Slicedglass2.gif" alt="" aria-hidden="true" />
     </div>
 
     <!-- ── CARD LINKS ────────────────────────────────────── -->
@@ -204,7 +215,7 @@
           <span class="card-link__body">Wichtige Notrufnummern und Sicherheitszeichen auf einen Blick.</span>
         </div>
         <svg class="card-link__arrow" viewBox="0 0 37 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M5.167 5.167H18.833M18.833 5.167V18.833M18.833 5.167L5 19" stroke="#E6301E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M5.167 5.167H18.833M18.833 5.167V18.833M18.833 5.167L5 19" stroke="#EDEDED" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </a>
 
@@ -214,7 +225,7 @@
           <span class="card-link__body">Du wurdest belästigt? Gebe jetzt dem Vorfall Sichtbarkeit.</span>
         </div>
         <svg class="card-link__arrow" viewBox="0 0 37 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M5.167 5.167H18.833M18.833 5.167V18.833M18.833 5.167L5 19" stroke="#E6301E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M5.167 5.167H18.833M18.833 5.167V18.833M18.833 5.167L5 19" stroke="#EDEDED" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </a>
     </div>
@@ -262,7 +273,7 @@
         </a>
       </nav>
       <a href="index.html" class="footer__logo" aria-label="(Un)gezähmt – Startseite">
-        <img src="./logoinvertiert.png" alt="(Un)gezähmt" />
+        <img src="./logo.png" alt="(Un)gezähmt" />
       </a>
     </div>
   </footer>
