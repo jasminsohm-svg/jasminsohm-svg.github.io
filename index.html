@@ -16,7 +16,6 @@
     .page--home {
       gap: 40px;
       padding-bottom: 0;
-      min-height: max(var(--page-min-h), 100dvh);
       background-image: url('./Farbverlauf.png');
       background-size: cover;
       background-position: center top;
@@ -37,16 +36,18 @@
 
     /* ── HEADER ANIMATION ───────────────────────────────── */
     .home-animation-wrap {
-      width: calc(100% + 32px);
-      margin: 0 -16px;
+      width: 328px;
+      height: 328px;
       flex-shrink: 0;
       position: relative;
+      overflow: hidden;
     }
 
     .home-animation {
       display: block;
       width: 100%;
-      height: auto;
+      height: 100%;
+      object-fit: cover;
       border: none;
       outline: none;
     }
@@ -105,7 +106,7 @@
       flex-direction: column;
       gap: 16px;
       width: calc(100% + 32px);
-      margin: 0 -16px;
+      margin: 8px -16px 0;
       padding: 0 16px;
       box-sizing: border-box;
     }
@@ -196,7 +197,7 @@
         <span class="navbar__menu-label">Menü</span>
       </button>
       <a href="index.html" class="navbar__logo" aria-label="(Un)gezähmt – Startseite">
-        <img src="./logoinvertiert.png" alt="(Un)gezähmt" style="height:33px;width:auto;display:block;" />
+        <img src="./Wortmarke_weiß.svg" alt="(Un)gezähmt" />
       </a>
     </div>
   </header>
@@ -274,7 +275,7 @@
         </a>
       </nav>
       <a href="index.html" class="footer__logo" aria-label="(Un)gezähmt – Startseite">
-        <img src="./logo.png" alt="(Un)gezähmt" />
+        <img src="./Wortmarke_schwarz.svg" alt="(Un)gezähmt" />
       </a>
     </div>
   </footer>

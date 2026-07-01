@@ -38,6 +38,10 @@
       padding: 0;
     }
 
+    html {
+      height: 100%;
+    }
+
     html, body {
       width: 100%;
       min-height: 100%;
@@ -48,16 +52,21 @@
       font-family: var(--font-main);
       color: var(--color-black);
       -webkit-font-smoothing: antialiased;
+      display: flex;
+      flex-direction: column;
     }
 
     /* ─── PAGE SHELL ─────────────────────────────────────── */
+    /* flex: 1 statt dvh-Berechnung, damit die Seite die echte Bildschirmhöhe
+       immer exakt ausfüllt (kein Rundungs-Rand am oberen/unteren Ende) */
     .page {
       min-width: var(--page-min-w);
       width: 100vw;
       max-width: var(--page-max-w);
       margin: 0 auto;
       background: var(--color-bg);
-      min-height: max(var(--page-min-h), 100dvh);
+      flex: 1 0 auto;
+      min-height: var(--page-min-h);
       display: flex;
       flex-direction: column;
     }
@@ -259,7 +268,7 @@
     }
 
     .footer__logo img {
-      height: 25px;
+      height: 30px;
       width: auto;
       display: block;
     }
