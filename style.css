@@ -82,11 +82,23 @@
       box-sizing: border-box;
     }
 
+    /* "Group Menü" bleibt beim Scrollen fix oben sichtbar, transparent,
+       ohne dass die Menübar selbst sticky wird oder einen Hintergrund bekommt */
     .navbar__inner {
-      width: 100%;
+      position: fixed;
+      top: env(safe-area-inset-top);
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100vw;
+      min-width: var(--page-min-w);
+      max-width: var(--page-max-w);
+      height: 89px;
       display: flex;
       align-items: center;
       gap: 40px;
+      padding: 0 var(--page-px);
+      box-sizing: border-box;
+      z-index: 50;
     }
 
     .navbar__menu-btn {
