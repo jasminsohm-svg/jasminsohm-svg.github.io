@@ -72,6 +72,8 @@
     }
 
     /* ─── NAVBAR ─────────────────────────────────────────── */
+    /* Kompletter Header-Bereich bleibt beim Scrollen immer sichtbar,
+       mit Hintergrund passend zur jeweiligen Seite (siehe .page--home Override) */
     .navbar {
       width: 100%;
       height: calc(89px + env(safe-area-inset-top));
@@ -80,25 +82,17 @@
       padding: env(safe-area-inset-top) var(--page-px) 0;
       flex-shrink: 0;
       box-sizing: border-box;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--color-bg);
     }
 
-    /* "Group Menü" bleibt beim Scrollen fix oben sichtbar, transparent,
-       ohne dass die Menübar selbst sticky wird oder einen Hintergrund bekommt */
     .navbar__inner {
-      position: fixed;
-      top: env(safe-area-inset-top);
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100vw;
-      min-width: var(--page-min-w);
-      max-width: var(--page-max-w);
-      height: 89px;
+      width: 100%;
       display: flex;
       align-items: center;
       gap: 40px;
-      padding: 0 var(--page-px);
-      box-sizing: border-box;
-      z-index: 50;
     }
 
     .navbar__menu-btn {
