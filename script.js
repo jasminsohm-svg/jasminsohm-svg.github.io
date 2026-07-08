@@ -113,3 +113,44 @@
   // Initialzustand
   goTo(0);
 })();
+
+// ── HOME: NAVBAR-HINTERGRUND SYNCHRON ZUM SEITEN-VERLAUF ──
+// Damit die sticky Navbar immer exakt den Bildausschnitt zeigt, der auch
+// "dahinter" liegen würde (ohne die laggy background-attachment:fixed-Technik).
+(function () {
+  const page = document.querySelector('.page--home');
+  const navbar = page ? page.querySelector('.navbar') : null;
+  if (!page || !navbar) return;
+
+  const IMG_W = 941;
+  const IMG_H = 1672;
+  let scale = 1;
+  let offsetX = 0;
+  let ticking = false;
+
+  function recompute() {
+    const w = page.offsetWidth;
+    const h = page.scrollHeight;
+    scale = Math.max(w / IMG_W, h / IMG_H);
+    offsetX = (w - IMG_W * scale) / 2;
+    navbar.style.backgroundSize = `${IMG_W * scale}px ${IMG_H * scale}px`;
+    updatePosition();
+  }
+
+  function updatePosition() {
+    const scrollY = window.scrollY || window.pageYOffset || 0;
+    navbar.style.backgroundPosition = `${offsetX}px ${-scrollY}px`;
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(updatePosition);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  window.addEventListener('resize', recompute);
+  window.addEventListener('load', recompute);
+  recompute();
+})();
